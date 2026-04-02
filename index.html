@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Enforma — Finding creative solutions to operational challenges.">
+    <title>Enforma — Operations Designed Like Brands</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            line-height: 1.6;
+        }
+        a { color: inherit; text-decoration: none; }
+ 
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+ 
+        nav .logo {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+        }
+
+        nav .logo img {
+            height: 40px;
+            width: auto;
+        }
+ 
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+        }
+ 
+        nav a {
+            font-size: 12px;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+ 
+        nav a:hover, nav a.active {
+            opacity: 1;
+        }
+ 
+        /* BACK TO TOP */
+        .back-to-top {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 999;
+        }
+ 
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+ 
+        .back-to-top:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-4px);
+        }
+ 
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 200px 60px 80px;
+            background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.4)), url('2B4A8922.JPG');
+            background-size: cover;
+            background-position: center;
+            margin-top: 80px;
+        }
+ 
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 300;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            max-width: 900px;
+        }
+ 
+        .hero p {
+            font-size: 18px;
+            opacity: 0.75;
+            max-width: 700px;
+            margin-bottom: 48px;
+        }
+ 
+        .cta {
+            display: inline-block;
+            padding: 16px 42px;
+            background: #fff;
+            color: #000;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s;
+        }
+ 
+        .cta:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(255, 255, 255, 0.2);
+        }
+ 
+        /* SECTIONS */
+        section {
+            padding: 120px 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+ 
+        section.no-border { border-top: none; }
+ 
+        .label {
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            opacity: 0.4;
+            margin-bottom: 40px;
+        }
+ 
+        h2 {
+            font-size: 48px;
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 60px;
+            letter-spacing: -0.01em;
+        }
+ 
+        /* GRIDS */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+ 
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+ 
+        .card {
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+ 
+        .card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-8px);
+        }
+ 
+        .card h3 {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+ 
+        .card p {
+            font-size: 15px;
+            opacity: 0.55;
+            line-height: 1.8;
+        }
+ 
+        .number {
+            font-size: 32px;
+            font-weight: 300;
+            opacity: 0.3;
+            margin-bottom: 20px;
+        }
+ 
+        /* CLIENT LOGOS */
+        .client-item {
+            text-align: center;
+        }
+ 
+        .client-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+ 
+        .client-logo img {
+            max-width: 80px;
+            max-height: 80px;
+            object-fit: contain;
+        }
+ 
+        .card:hover .client-logo {
+            transform: scale(1.08);
+        }
+ 
+        .client-item h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+ 
+        .client-item p {
+            font-size: 12px;
+            opacity: 0.4;
+        }
+ 
+        /* ABOUT */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+ 
+        .about h2 {
+            margin-bottom: 30px;
+        }
+ 
+        .about p {
+            font-size: 16px;
+            opacity: 0.6;
+            margin-bottom: 20px;
+            line-height: 1.9;
+        }
+ 
+        .bts-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 10px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            min-height: 300px;
+        }
+
+        .bts-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .bts-image.placeholder {
+            font-size: 14px;
+            opacity: 0.3;
+        }
+ 
+        /* TEAM */
+        .team { background: rgba(255, 255, 255, 0.01); }
+ 
+        .team h2 { margin-bottom: 60px; }
+ 
+        .team-member {
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+ 
+        .team-member:hover {
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateY(-4px);
+        }
+
+        .team-member-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .team-member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-member-image.placeholder {
+            font-size: 12px;
+            opacity: 0.3;
+        }
+ 
+        .team-member h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+ 
+        .team-subtitle {
+            font-size: 13px;
+            opacity: 0.4;
+            margin-bottom: 20px;
+        }
+ 
+        .team-member p:last-child {
+            font-size: 14px;
+            opacity: 0.55;
+            line-height: 1.8;
+        }
+ 
+        /* CONTACT - BOT SECTION */
+        .contact {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+ 
+        .contact h2 {
+            margin-bottom: 20px;
+            font-size: 52px;
+            background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.8) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+ 
+        .subtitle {
+            font-size: 16px;
+            opacity: 0.6;
+            margin: 0 auto 60px;
+            max-width: 600px;
+        }
+ 
+        #bot-container {
+            max-width: 520px;
+            margin: 0 auto;
+        }
+ 
+        .bot-question { margin-bottom: 30px; }
+ 
+        .bot-question p {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+ 
+        .bot-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+ 
+        .bot-option {
+            padding: 14px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: transparent;
+            color: #fff;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+            text-align: left;
+        }
+ 
+        .bot-option:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateX(4px);
+        }
+ 
+        .bot-option.selected {
+            background: rgba(255, 255, 255, 0.12);
+        }
+ 
+        .bot-input {
+            padding: 14px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 14px;
+            font-family: inherit;
+            margin-bottom: 20px;
+            width: 100%;
+            transition: all 0.2s;
+        }
+ 
+        .bot-input::placeholder { color: rgba(255, 255, 255, 0.3); }
+ 
+        .bot-input:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.08);
+        }
+ 
+        /* FAQ */
+        .faq-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 30px 0;
+        }
+ 
+        .faq-item:last-child { border-bottom: none; }
+ 
+        .faq-question {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            user-select: none;
+        }
+ 
+        .faq-question p {
+            font-size: 16px;
+            font-weight: 500;
+            margin: 0;
+            flex: 1;
+        }
+ 
+        .faq-toggle {
+            font-size: 20px;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+ 
+        .faq-toggle.open { transform: rotate(180deg); }
+ 
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s;
+            margin-top: 0;
+        }
+ 
+        .faq-answer.open {
+            max-height: 400px;
+            margin-top: 20px;
+        }
+ 
+        .faq-answer p {
+            font-size: 14px;
+            opacity: 0.6;
+            line-height: 1.8;
+            margin: 0;
+        }
+ 
+        /* FOOTER */
+        footer {
+            padding: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+ 
+        footer .logo {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+ 
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+ 
+        .contact-links p {
+            font-size: 13px;
+            opacity: 0.5;
+            margin: 0;
+        }
+ 
+        .contact-links a {
+            font-size: 14px;
+            opacity: 0.6;
+            transition: all 0.2s;
+        }
+ 
+        .contact-links a:hover {
+            opacity: 1;
+            transform: translateX(4px);
+        }
+ 
+        .tagline {
+            font-size: 14px;
+            opacity: 0.55;
+            line-height: 1.9;
+        }
+ 
+        /* MOBILE */
+        @media (max-width: 768px) {
+            nav { padding: 15px 30px; }
+            nav ul { gap: 20px; }
+            section { padding: 80px 30px; }
+            .hero { padding: 120px 30px 60px; margin-top: 60px; }
+            .hero h1 { font-size: 36px; }
+            h2 { font-size: 32px; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            .about { grid-template-columns: 1fr; gap: 40px; }
+            footer { grid-template-columns: 1fr; }
+            .back-to-top { width: 40px; height: 40px; bottom: 30px; right: 30px; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo"><img src="enformalogotexttransparentAsset_7.png" alt="Enforma"></div>
+        <ul>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+ 
+    <div class="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</div>
+ 
+    <section class="hero no-border">
+        <h1>Your operations aren't logistics problems. They're design challenges.</h1>
+        <p>We approach them like creative directors—we strategize and implement design and systems to build operations that scale.</p>
+        <a href="#contact" class="cta">Book Your Strategy</a>
+    </section>
+ 
+    <section class="no-border" style="padding: 80px 60px;">
+        <p class="label">Brands we've worked with</p>
+        <h2 style="font-size: 32px;">Real work. Real results.</h2>
+        <div class="grid-2">
+            <div class="card client-item">
+                <div class="client-logo" style="background: #000;"><img src="BASICRESPECT-MAINLOGO-WHITE (2).png" alt="BR" loading="lazy"></div>
+                <h3>Basic Respect</h3>
+                <p>DTC fashion brand. Scaled profitably.</p>
+            </div>
+            <div class="card client-item">
+                <div class="client-logo" style="background: #000;"><img src="AVCON LOGO (1).png" alt="AVCON" loading="lazy"></div>
+                <h3>AVCON Group</h3>
+                <p>Content strategy and systems.</p>
+            </div>
+            <div class="card client-item">
+                <div class="client-logo" style="background: #fff;"><img src="Outlook-1pxtqkom (1).png" alt="KOTC" loading="lazy"></div>
+                <h3>King of the Court</h3>
+                <p>Brand partnership & growth.</p>
+            </div>
+            <div class="card client-item">
+                <div class="client-logo" style="background: #fff;"><img src="Nuestro_Paraguas_Logo.png" alt="Nuestro Paraguas" loading="lazy"></div>
+                <h3>Nuestro Paraguas</h3>
+                <p>Operations & brand strategy.</p>
+            </div>
+        </div>
+    </section>
+ 
+
+    <section>
+        <p class="label">Our Work</p>
+        <h2>Creative direction through video.</h2>
+        <div class="grid-3">
+            <div class="card" style="padding: 0; background: transparent; border: none;">
+                <div style="aspect-ratio: 9/16; border-radius: 10px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/eqZ5SS4UahI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border: none;"></iframe>
+                </div>
+            </div>
+            <div class="card" style="padding: 0; background: transparent; border: none;">
+                <div style="aspect-ratio: 9/16; border-radius: 10px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/GFtA4rWArIM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border: none;"></iframe>
+                </div>
+            </div>
+            <div class="card" style="padding: 0; background: transparent; border: none;">
+                <div style="aspect-ratio: 9/16; border-radius: 10px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/p-tStDmsrx8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border: none;"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+ 
+    <section class="contact" id="contact">
+        <p class="label">Let's solve it</p>
+        <h2>We're here to solve problems.</h2>
+        <p class="subtitle">Tell us what's broken. We'll identify where creative strategy can make a difference.</p>
+        <div id="bot-container"></div>
+    </section>
+ 
+    <section id="services">
+        <p class="label">What we do</p>
+        <h2>Creative strategy applied to your operations.</h2>
+        <div class="grid-2">
+            <div class="card">
+                <p class="number">01</p>
+                <h3>Brand Strategy</h3>
+                <p>Define who you are, what you stand for, how you show up. The creative foundation everything else flows from.</p>
+            </div>
+            <div class="card">
+                <p class="number">02</p>
+                <h3>Process Design</h3>
+                <p>Your workflow doesn't need automation—it needs design. We map, redesign, and remove the busywork.</p>
+            </div>
+            <div class="card">
+                <p class="number">03</p>
+                <h3>Systems That Scale</h3>
+                <p>Email routing, CRM sync, follow-ups, reporting—all designed to run in the background. To free your team.</p>
+            </div>
+            <div class="card">
+                <p class="number">04</p>
+                <h3>Creative Direction</h3>
+                <p>Consistency across every touchpoint. Messaging, content, brand voice. Standards that scale.</p>
+            </div>
+        </div>
+    </section>
+ 
+    <section id="process">
+        <p class="label">How we work</p>
+        <h2>Creative design, applied to operations.</h2>
+        <div class="grid-2">
+            <div class="card">
+                <h3 style="font-size: 20px;">Week 1: Understand</h3>
+                <p>We audit your process, team, and goals. Not to find problems—to understand how you work.</p>
+            </div>
+            <div class="card">
+                <h3 style="font-size: 20px;">Week 2-3: Build</h3>
+                <p>We design the flow, then engineer systems to support it. Strategy informs workflow. Everything is intentional.</p>
+            </div>
+            <div class="card">
+                <h3 style="font-size: 20px;">Week 4: Scale</h3>
+                <p>Systems go live. Your team refocuses on product, customers, growth. We monitor and refine.</p>
+            </div>
+            <div class="card">
+                <h3 style="font-size: 20px;">Ongoing: Optimize</h3>
+                <p>Monthly strategy calls. We monitor performance, refine workflows, scale as your team grows.</p>
+            </div>
+        </div>
+    </section>
+ 
+    <section id="about">
+        <div class="about">
+            <div>
+                <p class="label">Who we are</p>
+                <h2>We solved this for ourselves first.</h2>
+                <p>Lukanda started Enforma after extensive years working in the modeling, video, and content creation industry. He's collaborated with major brands—Nike, Samsung, Myer, New Balance, Culture Kings, Footlocker—understanding how brands operate from every angle.</p>
+                <p>With Jerome, who has a technical background in fashion and design and built systems at a logistics company, Lukanda founded Basic Respect. Together, they hit every operational problem: manual workflows, content direction drifting, reporting chaos. They fixed it by designing their way out.</p>
+                <p>Enforma is built to solve that. From creative direction and videography to backend operations—everything designed so you can focus on growing your business.</p>
+            </div>
+            <div class="bts-image"><img src="bts_enforma.jpeg" alt="Behind the scenes" loading="lazy"></div>
+        </div>
+    </section>
+ 
+    <section class="team">
+        <p class="label">Meet the team</p>
+        <h2>Experience across creative, operations, and systems.</h2>
+        <div class="grid-2">
+            <div class="team-member">
+                <div class="team-member-image"><img src="LUKANDA_1221.jpg" alt="Lukanda" loading="lazy"></div>
+                <h3>Lukanda</h3>
+                <p class="team-subtitle">Creative Director & Co-Founder</p>
+                <p>Designed Basic Respect from the ground up—brand strategy, creative direction, content flows, customer relationships. Worked alongside Jerome to build the entire operation. Obsessed with brand consistency.</p>
+            </div>
+            <div class="team-member">
+                <div class="team-member-image placeholder">[Jerome Photo]</div>
+                <h3>Jerome</h3>
+                <p class="team-subtitle">Design and Systems Specialist</p>
+                <p>Studied fashion and design, then implemented systems at a logistics company, then brought both disciplines to Australian fashion brands. Designed the operations infrastructure that makes Basic Respect scalable. Obsessed with removing friction.</p>
+            </div>
+            <div class="team-member">
+                <div class="team-member-image"><img src="renae-degaetano.jpg" alt="Renae DeGaetano" loading="lazy"></div>
+                <h3>Renae DeGaetano</h3>
+                <p class="team-subtitle">Marketing Specialist</p>
+                <p>Started her career at Elite Eleven (2020–2024), part of a founding team that grew it into a multimillion-dollar operation. Developed expertise across marketing, email onboarding, and customer service in a fast-growth environment. Now leads marketing strategy at Enforma while working at Endota Spa.</p>
+            </div>
+        </div>
+    </section>
+ 
+    <section>
+        <p class="label">How we work</p>
+        <h2>We're here to solve your problems.</h2>
+        <div style="max-width: 800px; margin: 0 auto; padding: 40px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px;">
+            <p style="font-size: 16px; color: #fff; margin: 0 0 15px; font-weight: 600;">Strategy first. Then execution.</p>
+            <p style="font-size: 14px; opacity: 0.6; margin: 0; line-height: 1.6;">We start by understanding your actual problem—not assuming we know it. We audit your process, your team, your gaps. Then we design and build systems that fit how you work, not how we think you should work. No templates. No forcing you into a box. Just solutions that solve your real problems.</p>
+        </div>
+    </section>
+ 
+    <section>
+        <p class="label">Common questions</p>
+        <h2>What clients ask us.</h2>
+        <div style="max-width: 800px;">
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.nextElementSibling.classList.toggle('open'); this.querySelector('.faq-toggle').classList.toggle('open')">
+                    <p>How long does implementation actually take?</p>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer"><p>Depends on complexity. Simple email routing: 2 weeks. Full Salesforce + multi-channel: 4-6 weeks. We scope in week one. Most clients are live and seeing results within 30 days.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.nextElementSibling.classList.toggle('open'); this.querySelector('.faq-toggle').classList.toggle('open')">
+                    <p>What if we outgrow this or need to change direction?</p>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer"><p>Systems scale with you. We've grown clients from 5 to 50+ people without ripping out infrastructure. If priorities shift, we adapt. That's why we do monthly strategy calls.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.nextElementSibling.classList.toggle('open'); this.querySelector('.faq-toggle').classList.toggle('open')">
+                    <p>Do you work with complex compliance needs?</p>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer"><p>Yes. We handle data security seriously—NDA first, data stays in your infrastructure, encryption standard. Details depend on your specific setup. Discuss in discovery call.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.nextElementSibling.classList.toggle('open'); this.querySelector('.faq-toggle').classList.toggle('open')">
+                    <p>How much customization? Are we locked into a template?</p>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer"><p>Zero templates. We build your workflow from scratch based on your process. If you have a weird 7-step follow-up, we automate that exact flow. Customization is the default.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.nextElementSibling.classList.toggle('open'); this.querySelector('.faq-toggle').classList.toggle('open')">
+                    <p>Who's my point of contact?</p>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer"><p>You get assigned an account lead. Changes and support requests go to them. For strategy calls, you talk to the team that built it. No getting lost in support tickets.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.nextElementSibling.classList.toggle('open'); this.querySelector('.faq-toggle').classList.toggle('open')">
+                    <p>Can we cancel if this doesn't work out?</p>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer"><p>No long-term lock-in. We're confident in our work. If it's not delivering results, we refund setup and continue optimizing on retainer until it does. You never feel trapped.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.nextElementSibling.classList.toggle('open'); this.querySelector('.faq-toggle').classList.toggle('open')">
+                    <p>Why aren't your fees bloated like other agencies?</p>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer"><p>We charge for results, not hours. No account managers, no unnecessary layers, no phantom retainers. You get the team that built your system, solving your actual problems—not paying for overhead.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.nextElementSibling.classList.toggle('open'); this.querySelector('.faq-toggle').classList.toggle('open')">
+                    <p>What does this actually cost?</p>
+                    <span class="faq-toggle">▼</span>
+                </div>
+                <div class="faq-answer"><p>Depends on scope. Setup fee ranges $3-8k (strategy, build, launch). Monthly retainer $2-5k (monitoring, optimization, support). We quote after discovery call when we know the real scope.</p></div>
+            </div>
+        </div>
+    </section>
+ 
+
+    <footer>
+        <div>
+            <p class="logo">Enforma</p>
+            <div class="contact-links">
+                <p>Melbourne, Australia</p>
+                <a href="mailto:hello@enforma.agency">hello@enforma.agency</a>
+                <a href="https://www.instagram.com/enforma___?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">Instagram</a>
+                <a href="https://www.linkedin.com/company/enforma-agency" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+        <div>
+            <p class="tagline">Finding creative solutions to operational challenges. We design systems that give you time back—so you can focus on building, scaling, and what actually drives your business forward.</p>
+        </div>
+    </footer>
+ 
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // NAV SCROLL & ACTIVE STATE
+        const nav = document.querySelector('nav');
+        const navLinks = document.querySelectorAll('nav a[href^="#"]');
+        const sections = document.querySelectorAll('section[id]');
+ 
+        window.addEventListener('scroll', () => {
+            // Sticky effect
+            nav.style.background = window.scrollY > 50 ? 'rgba(10, 10, 10, 0.95)' : 'rgba(10, 10, 10, 0.85)';
+ 
+            // Active section
+            let current = '';
+            sections.forEach(section => {
+                if (window.scrollY >= section.offsetTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+ 
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+ 
+            // Back to top
+            document.querySelector('.back-to-top').classList.toggle('show', window.scrollY > 300);
+        });
+ 
+        // DISCOVERY BOT
+        const questions = [
+            { q: "What's your biggest challenge right now?", options: [
+                { label: "Content strategy & brand direction", value: "content" },
+                { label: "Email & message chaos", value: "email" },
+                { label: "Manual data work slowing us down", value: "manual" },
+                { label: "Operations coordination mess", value: "coordination" }
+            ]},
+            { q: "What's your second biggest pain point?", options: [
+                { label: "Inconsistent messaging & brand voice", value: "messaging" },
+                { label: "Lead routing & follow-up process", value: "routing" },
+                { label: "Team reporting requirements", value: "reporting" },
+                { label: "Customer experience consistency", value: "experience" }
+            ]},
+            { q: "If we solved this, what would your team focus on?", options: [
+                { label: "Revenue & growth", value: "growth" },
+                { label: "Building better products", value: "product" },
+                { label: "Serving customers better", value: "customers" },
+                { label: "Just breathing again", value: "breathing" }
+            ]},
+            { q: "Your name?", type: "text", placeholder: "First & last" },
+            { q: "Your email?", type: "text", placeholder: "name@company.com" }
+        ];
+ 
+        let currentQ = 0;
+        const responses = {};
+ 
+        function renderBot() {
+            const container = document.getElementById("bot-container");
+            const q = questions[currentQ];
+            let html = `<div class="bot-question"><p>${q.q}</p>`;
+ 
+            if (q.type === "text") {
+                html += `<input type="text" class="bot-input" placeholder="${q.placeholder}" onkeypress="if(event.key==='Enter') nextQ(this.value, true)" />`;
+            } else {
+                html += `<div class="bot-options">`;
+                q.options.forEach(opt => {
+                    html += `<button class="bot-option" onclick="nextQ('${opt.value}')">${opt.label}</button>`;
+                });
+                html += `</div>`;
+            }
+ 
+            html += `</div>`;
+            container.innerHTML = html;
+        }
+ 
+        function nextQ(value) {
+            responses[`q${currentQ}`] = value;
+            currentQ++;
+            if (currentQ < questions.length) {
+                renderBot();
+            } else {
+                completeBot();
+            }
+        }
+ 
+        function completeBot() {
+            const container = document.getElementById("bot-container");
+            container.innerHTML = `
+                <div style="max-width: 520px; margin: 0 auto; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 3rem 2rem; text-align: center;">
+                    <h2 style="font-size: 26px; font-weight: 500; color: #fff; margin: 0 0 0.5rem;">Got it.</h2>
+                    <p style="font-size: 16px; color: rgba(255, 255, 255, 0.75); margin: 0 0 2rem; line-height: 1.6;">We'll send your strategy blueprint to <strong>${responses.q3}</strong>. Check email in 30 minutes.</p>
+                    <button onclick="window.location.href='#services'" style="padding: 14px 36px; background: #fff; color: #000; border: none; border-radius: 8px; font-weight: 600; font-size: 14px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.05em;">See How We Work</button>
+                </div>
+            `;
+            const emailBody = encodeURIComponent(`Name: ${responses.q3}\nEmail: ${responses.q4}`);
+            window.open(`mailto:hello@enforma.agency?subject=Discovery: ${responses.q3}&body=${emailBody}`, '_blank');
+        }
+ 
+        renderBot();
+    </script>
+</body>
+</html>
