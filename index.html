@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Enforma — Finding creative solutions to operational challenges.">
     <title>Enforma — Operations Designed Like Brands</title>
-    <link rel="icon" type="image/png" href="enformalogotexttransparentAsset_7.png">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
@@ -431,6 +430,13 @@
         .bot-option.selected {
             background: rgba(255, 255, 255, 0.12);
         }
+
+        /* FIX: text input + submit button wrapper */
+        .bot-input-row {
+            display: flex;
+            gap: 10px;
+            align-items: stretch;
+        }
  
         .bot-input {
             padding: 14px 20px;
@@ -440,7 +446,6 @@
             color: #fff;
             font-size: 14px;
             font-family: inherit;
-            margin-bottom: 20px;
             width: 100%;
             transition: all 0.2s;
         }
@@ -451,6 +456,24 @@
             outline: none;
             border-color: rgba(255, 255, 255, 0.4);
             background: rgba(255, 255, 255, 0.08);
+        }
+
+        .bot-submit {
+            padding: 14px 22px;
+            background: #fff;
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .bot-submit:hover {
+            background: rgba(255,255,255,0.85);
         }
  
         /* FAQ */
@@ -610,7 +633,6 @@
         </div>
     </section>
  
-
     <section>
         <p class="label">Our Work</p>
         <h2>Creative direction through video.</h2>
@@ -800,13 +822,13 @@
         </div>
     </section>
  
-
     <footer>
         <div>
             <p class="logo">Enforma</p>
             <div class="contact-links">
                 <p>Melbourne, Australia</p>
-                <a href="/cdn-cgi/l/email-protection#dbb3beb7b7b49bbeb5bdb4a9b6baf5babcbeb5b8a2"><span class="__cf_email__" data-cfemail="78101d141417381d161e170a151956191f1d161b01">[email&#160;protected]</span></a>
+                <!-- FIX: plain mailto link, no Cloudflare obfuscation dependency -->
+                <a href="mailto:hello@enforma.agency">hello@enforma.agency</a>
                 <a href="https://www.instagram.com/enforma___?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">Instagram</a>
                 <a href="https://www.linkedin.com/company/enforma-agency" target="_blank">LinkedIn</a>
             </div>
@@ -816,17 +838,15 @@
         </div>
     </footer>
  
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         // NAV SCROLL & ACTIVE STATE
         const nav = document.querySelector('nav');
         const navLinks = document.querySelectorAll('nav a[href^="#"]');
         const sections = document.querySelectorAll('section[id]');
  
         window.addEventListener('scroll', () => {
-            // Sticky effect
             nav.style.background = window.scrollY > 50 ? 'rgba(10, 10, 10, 0.95)' : 'rgba(10, 10, 10, 0.85)';
  
-            // Active section
             let current = '';
             sections.forEach(section => {
                 if (window.scrollY >= section.offsetTop - 200) {
@@ -841,7 +861,6 @@
                 }
             });
  
-            // Back to top
             document.querySelector('.back-to-top').classList.toggle('show', window.scrollY > 300);
         });
  
@@ -878,7 +897,13 @@
             let html = `<div class="bot-question"><p>${q.q}</p>`;
  
             if (q.type === "text") {
-                html += `<input type="text" class="bot-input" placeholder="${q.placeholder}" onkeypress="if(event.key==='Enter') nextQ(this.value, true)" />`;
+                // FIX: wrapped in a row div with a proper submit button
+                html += `
+                    <div class="bot-input-row">
+                        <input id="bot-text-input" type="text" class="bot-input" placeholder="${q.placeholder}" />
+                        <button class="bot-submit" onclick="submitTextInput()">→</button>
+                    </div>
+                `;
             } else {
                 html += `<div class="bot-options">`;
                 q.options.forEach(opt => {
@@ -889,6 +914,31 @@
  
             html += `</div>`;
             container.innerHTML = html;
+
+            // Also keep Enter key working for text inputs
+            if (q.type === "text") {
+                const input = document.getElementById("bot-text-input");
+                if (input) {
+                    input.addEventListener("keypress", function(e) {
+                        if (e.key === "Enter") submitTextInput();
+                    });
+                    // Autofocus for desktop UX
+                    input.focus();
+                }
+            }
+        }
+
+        // FIX: separate function for text input submission with validation
+        function submitTextInput() {
+            const input = document.getElementById("bot-text-input");
+            if (!input) return;
+            const value = input.value.trim();
+            if (!value) {
+                input.style.borderColor = "rgba(255,100,100,0.5)";
+                input.placeholder = "Please fill this in";
+                return;
+            }
+            nextQ(value);
         }
  
         function nextQ(value) {
@@ -901,13 +951,35 @@
             }
         }
  
+        // FIX: completed completeBot function — was cut off mid-line in original
         function completeBot() {
             const container = document.getElementById("bot-container");
+            const userEmail = responses["q4"] || "your email";
+            const userName = responses["q3"] || "there";
+
             container.innerHTML = `
                 <div style="max-width: 520px; margin: 0 auto; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 3rem 2rem; text-align: center;">
-                    <h2 style="font-size: 26px; font-weight: 500; color: #fff; margin: 0 0 0.5rem;">Got it.</h2>
-                    <p style="font-size: 16px; color: rgba(255, 255, 255, 0.75); margin: 0 0 2rem; line-height: 1.6;">We'll send your strategy blueprint to <strong>${responses.q3}</strong>. Check email in 30 minutes.</p>
+                    <h2 style="font-size: 26px; font-weight: 500; color: #fff; margin: 0 0 0.5rem;">Got it, ${userName.split(" ")[0]}.</h2>
+                    <p style="font-size: 16px; color: rgba(255, 255, 255, 0.75); margin: 0 0 2rem; line-height: 1.6;">We'll reach out to <strong>${userEmail}</strong> within 24 hours to walk through your strategy.</p>
                     <button onclick="window.location.href='#services'" style="padding: 14px 36px; background: #fff; color: #000; border: none; border-radius: 8px; font-weight: 600; font-size: 14px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.05em;">See How We Work</button>
                 </div>
             `;
-            const emailBody = encod
+
+            // Send a mailto with the collected responses (opens user's mail client)
+            const subject = encodeURIComponent("New Enforma Enquiry — " + (responses["q3"] || "Website Lead"));
+            const body = encodeURIComponent(
+                "Name: " + (responses["q3"] || "N/A") + "\n" +
+                "Email: " + (responses["q4"] || "N/A") + "\n\n" +
+                "Biggest challenge: " + (responses["q0"] || "N/A") + "\n" +
+                "Second pain point: " + (responses["q1"] || "N/A") + "\n" +
+                "Team focus after fix: " + (responses["q2"] || "N/A")
+            );
+            // Silently open mailto so lead details land in your inbox
+            window.location.href = "mailto:hello@enforma.agency?subject=" + subject + "&body=" + body;
+        }
+ 
+        // Init bot on load
+        renderBot();
+    </script>
+</body>
+</html>
