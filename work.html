@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Enforma — Our Work. Brand promos, event coverage, social content, and product launches for businesses that want to look like brands.">
+    <title>Our Work — Enforma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        /* GRAIN */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.025;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: background 0.3s;
+        }
+
+        nav .logo img { height: 40px; width: auto; }
+
+        nav ul { list-style: none; display: flex; gap: 40px; }
+
+        nav a {
+            font-family: 'Syne', sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            opacity: 0.5;
+            transition: opacity 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        nav a:hover, nav a.active { opacity: 1; }
+        nav a.nav-active { opacity: 1; }
+
+        /* BACK TO TOP */
+        .back-to-top {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 999;
+            font-size: 16px;
+        }
+
+        .back-to-top.show { opacity: 1; visibility: visible; }
+        .back-to-top:hover { background: rgba(255, 255, 255, 0.15); transform: translateY(-4px); }
+
+        /* HERO */
+        .hero {
+            padding: 200px 60px 80px;
+            margin-top: 80px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            position: relative;
+        }
+
+        .hero-inner {
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .hero-left { flex: 1; min-width: 280px; }
+
+        .hero-eyebrow {
+            font-family: 'Syne', sans-serif;
+            font-size: 10px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            opacity: 0.35;
+            margin-bottom: 24px;
+            animation: fadeUp 0.7s ease both;
+        }
+
+        .hero h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 72px;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1.0;
+            animation: fadeUp 0.7s 0.08s ease both;
+        }
+
+        .hero-right {
+            max-width: 360px;
+            animation: fadeUp 0.7s 0.16s ease both;
+        }
+
+        .hero-right p {
+            font-size: 15px;
+            opacity: 0.45;
+            line-height: 1.8;
+            margin-bottom: 28px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+        }
+
+        .stat-item {}
+
+        .stat-num {
+            font-family: 'Syne', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.35;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-family: 'Syne', sans-serif;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* FILTER BAR */
+        .filter-bar {
+            padding: 0 60px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            gap: 0;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .filter-bar::-webkit-scrollbar { display: none; }
+
+        .filter-btn {
+            font-family: 'Syne', sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 20px 28px;
+            background: none;
+            border: none;
+            color: #fff;
+            opacity: 0.35;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -1px;
+        }
+
+        .filter-btn:hover { opacity: 0.7; }
+        .filter-btn.active { opacity: 1; border-bottom-color: #fff; }
+
+        /* GRID */
+        .work-grid {
+            padding: 60px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+        }
+
+        /* VIDEO CARD */
+        .work-card {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            background: #111;
+            aspect-ratio: 9/16;
+        }
+
+        .work-card:nth-child(3n+1):first-child,
+        .work-card.featured {
+            grid-column: span 2;
+            aspect-ratio: 16/9;
+        }
+
+        .work-card-thumb {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+            display: block;
+        }
+
+        .work-card:hover .work-card-thumb {
+            transform: scale(1.04);
+        }
+
+        .work-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.35s;
+            display: flex;
+            align-items: flex-end;
+            padding: 28px;
+        }
+
+        .work-card:hover .work-card-overlay { opacity: 1; }
+
+        .work-card-always {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 24px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+        }
+
+        .work-tag {
+            font-family: 'Syne', sans-serif;
+            font-size: 9px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            opacity: 0.5;
+            margin-bottom: 6px;
+        }
+
+        .work-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin-bottom: 4px;
+        }
+
+        .work-desc {
+            font-size: 12px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            line-height: 1.5;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .work-card:hover .work-desc { opacity: 1; }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            width: 56px;
+            height: 56px;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .play-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: #fff;
+            margin-left: 3px;
+        }
+
+        .work-card:hover .play-icon {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* HIDDEN CARDS */
+        .work-card[data-hidden="true"] { display: none; }
+
+        /* LIGHTBOX */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.96);
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            padding: 40px;
+        }
+
+        .lightbox.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-inner {
+            width: 100%;
+            max-width: 900px;
+            position: relative;
+        }
+
+        .lightbox-video {
+            position: relative;
+            width: 100%;
+            border-radius: 4px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .lightbox-video iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -52px;
+            right: 0;
+            font-family: 'Syne', sans-serif;
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            opacity: 0.5;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            background: none;
+            border: none;
+            color: #fff;
+            padding: 8px 0;
+        }
+
+        .lightbox-close:hover { opacity: 1; }
+
+        .lightbox-meta {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .lightbox-tag {
+            font-family: 'Syne', sans-serif;
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            opacity: 0.35;
+        }
+
+        .lightbox-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin-top: 6px;
+        }
+
+        .lightbox-cta {
+            font-family: 'Syne', sans-serif;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0.5;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 2px;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .lightbox-cta:hover { opacity: 1; border-color: rgba(255,255,255,0.6); }
+
+        /* CTA SECTION */
+        .cta-section {
+            padding: 120px 60px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+        }
+
+        .cta-section p.label {
+            font-family: 'Syne', sans-serif;
+            font-size: 10px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            opacity: 0.35;
+            margin-bottom: 28px;
+        }
+
+        .cta-section h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 52px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p.sub {
+            font-size: 15px;
+            opacity: 0.45;
+            max-width: 480px;
+            margin: 0 auto 48px;
+            line-height: 1.8;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 16px 44px;
+            background: #fff;
+            color: #000;
+            border-radius: 4px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 40px rgba(255,255,255,0.15);
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        footer .logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            margin-bottom: 36px;
+            text-transform: uppercase;
+        }
+
+        .contact-links { display: flex; flex-direction: column; gap: 10px; }
+        .contact-links p { font-size: 13px; opacity: 0.4; margin: 0; }
+        .contact-links a { font-size: 13px; opacity: 0.5; transition: all 0.2s; display: inline-block; }
+        .contact-links a:hover { opacity: 1; transform: translateX(4px); }
+        .tagline { font-size: 14px; opacity: 0.4; line-height: 1.9; }
+
+        /* SCROLL REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* MOBILE */
+        @media (max-width: 900px) {
+            nav { padding: 15px 24px; }
+            nav ul { gap: 18px; }
+            .hero { padding: 140px 24px 60px; }
+            .hero h1 { font-size: 48px; }
+            .hero-inner { flex-direction: column; gap: 36px; }
+            .hero-right { max-width: 100%; }
+            .filter-bar { padding: 0 24px; }
+            .work-grid { padding: 24px; gap: 12px; grid-template-columns: 1fr 1fr; }
+            .work-card.featured { grid-column: span 2; }
+            .cta-section { padding: 80px 24px; }
+            .cta-section h2 { font-size: 36px; }
+            footer { grid-template-columns: 1fr; padding: 48px 24px; }
+            .lightbox { padding: 20px; }
+            .back-to-top { bottom: 24px; right: 24px; width: 40px; height: 40px; }
+        }
+
+        @media (max-width: 540px) {
+            .work-grid { grid-template-columns: 1fr; gap: 2px; padding: 0; }
+            .work-card.featured { grid-column: span 1; aspect-ratio: 9/16; }
+            .work-card { aspect-ratio: 9/16; }
+            .work-card-overlay { opacity: 1; }
+            .work-desc { opacity: 1; }
+            .play-icon { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo"><a href="index.html"><img src="enformalogotexttransparentAsset_7.png" alt="Enforma"></a></div>
+        <ul>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="work.html" class="nav-active">Work</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</div>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-inner">
+            <div class="hero-left">
+                <p class="hero-eyebrow">Selected Work</p>
+                <h1>The work<br>speaks.</h1>
+            </div>
+            <div class="hero-right">
+                <p>Brand promos, event coverage, social content series, product launches. Three selected projects. Across events, trade, and hospitality. The full body of work spans 15+ projects — this is the range.</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <p class="stat-num">3</p>
+                        <p class="stat-label">Selected</p>
+                    </div>
+                    <div class="stat-item">
+                        <p class="stat-num">15+</p>
+                        <p class="stat-label">Projects</p>
+                    </div>
+                    <div class="stat-item">
+                        <p class="stat-num">AU</p>
+                        <p class="stat-label">Based</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FILTER -->
+    <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="event-coverage">Event Coverage</button>
+        <button class="filter-btn" data-filter="brand-promo">Brand Promo</button>
+        <button class="filter-btn" data-filter="venue-reel">Venue Reel</button>
+    </div>
+
+    <!-- WORK GRID -->
+    <div class="work-grid" id="work-grid">
+
+        <!-- CARD 1 — featured -->
+        <div class="work-card featured reveal"
+             data-category="event-coverage"
+             data-title="Gary Payton Tour · Sydney"
+             data-tag="Event Coverage"
+             data-desc="Full event recap for King of the Court. Shot and directed on the day."
+             data-youtube="eqZ5SS4UahI"
+             onclick="openLightbox(this)">
+            <img class="work-card-thumb" src="https://img.youtube.com/vi/eqZ5SS4UahI/maxresdefault.jpg" alt="Gary Payton Tour Sydney" loading="lazy">
+            <div class="play-icon">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </div>
+            <div class="work-card-always">
+                <p class="work-tag">Event Coverage</p>
+                <p class="work-title">Gary Payton Tour · Sydney</p>
+                <p class="work-desc">Full event recap for King of the Court.</p>
+            </div>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="work-card reveal"
+             data-category="brand-promo"
+             data-title="AVCON Group"
+             data-tag="Brand Promo"
+             data-desc="Brand film and promotional content for a construction and trade company."
+             data-youtube="GFtA4rWArIM"
+             onclick="openLightbox(this)">
+            <img class="work-card-thumb" src="https://img.youtube.com/vi/GFtA4rWArIM/maxresdefault.jpg" alt="AVCON Group" loading="lazy">
+            <div class="play-icon">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </div>
+            <div class="work-card-always">
+                <p class="work-tag">Brand Promo</p>
+                <p class="work-title">AVCON Group</p>
+                <p class="work-desc">Brand film for a construction and trade company.</p>
+            </div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="work-card reveal"
+             data-category="venue-reel"
+             data-title="Anaia · Venue Reel"
+             data-tag="Venue Reel"
+             data-desc="Hospitality venue reel for Anaia."
+             data-youtube="p-tStDmsrx8"
+             onclick="openLightbox(this)">
+            <img class="work-card-thumb" src="https://img.youtube.com/vi/p-tStDmsrx8/maxresdefault.jpg" alt="Anaia Promotional Reel" loading="lazy">
+            <div class="play-icon">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </div>
+            <div class="work-card-always">
+                <p class="work-tag">Venue Reel</p>
+                <p class="work-title">Anaia · Venue Reel</p>
+                <p class="work-desc">Hospitality venue reel for Anaia.</p>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- RANGE OF WORK -->
+    <div style="padding: 80px 60px; border-top: 1px solid rgba(255,255,255,0.07);">
+        <p style="font-family:'Syne',sans-serif;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:20px;display:block;">What we've covered</p>
+        <h2 style="font-family:'Syne',sans-serif;font-size:clamp(28px,4vw,48px);font-weight:700;letter-spacing:-0.025em;line-height:1.1;margin-bottom:48px;">15+ projects across<br>every format.</h2>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;">
+            <div style="padding:36px;background:#111;border:1px solid rgba(255,255,255,0.07);border-radius:2px;">
+                <p style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:16px;">Format</p>
+                <h4 style="font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:12px;letter-spacing:-0.01em;">Event Coverage</h4>
+                <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.8;">Full-day event recaps, highlights reels, same-day edits. Worked with King of the Court on NBA touring events across Sydney and Melbourne.</p>
+            </div>
+            <div style="padding:36px;background:#111;border:1px solid rgba(255,255,255,0.07);border-radius:2px;">
+                <p style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:16px;">Format</p>
+                <h4 style="font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:12px;letter-spacing:-0.01em;">Brand Promos</h4>
+                <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.8;">Promotional films for trade, construction, and fashion. Built to work across web, social, and presentation decks. AVCON Group, Basic Respect, and more.</p>
+            </div>
+            <div style="padding:36px;background:#111;border:1px solid rgba(255,255,255,0.07);border-radius:2px;">
+                <p style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:16px;">Format</p>
+                <h4 style="font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:12px;letter-spacing:-0.01em;">Venue Reels</h4>
+                <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.8;">Hospitality and lifestyle venues. Shot to capture atmosphere, not just space. The kind of content that makes someone want to book a table.</p>
+            </div>
+            <div style="padding:36px;background:#111;border:1px solid rgba(255,255,255,0.07);border-radius:2px;">
+                <p style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:16px;">Format</p>
+                <h4 style="font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:12px;letter-spacing:-0.01em;">Social Content</h4>
+                <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.8;">Short-form content built for Instagram and TikTok. Ongoing series for fashion brands and product drops. Edited for the scroll, not just the brand deck.</p>
+            </div>
+            <div style="padding:36px;background:#111;border:1px solid rgba(255,255,255,0.07);border-radius:2px;">
+                <p style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:16px;">Format</p>
+                <h4 style="font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:12px;letter-spacing:-0.01em;">Product Launches</h4>
+                <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.8;">Launch content timed to drops and campaigns. Built Basic Respect's visual identity from the ground up — product, campaign, and content all aligned.</p>
+            </div>
+            <div style="padding:36px;background:#111;border:1px solid rgba(255,255,255,0.07);border-radius:2px;">
+                <p style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:16px;">Format</p>
+                <h4 style="font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:12px;letter-spacing:-0.01em;">Brand Identity</h4>
+                <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.8;">Creative direction across the full brand. Visual language, tone, content strategy. The work that makes everything else consistent.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox" onclick="closeLightboxOnBg(event)">
+        <div class="lightbox-inner">
+            <button class="lightbox-close" onclick="closeLightbox()">Close ✕</button>
+            <div class="lightbox-video" id="lightbox-video"></div>
+            <div class="lightbox-meta">
+                <div>
+                    <p class="lightbox-tag" id="lightbox-tag"></p>
+                    <p class="lightbox-title" id="lightbox-title"></p>
+                </div>
+                <a href="index.html#contact" class="lightbox-cta">Work with us →</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section reveal">
+        <p class="label">Ready to shoot</p>
+        <h2>Working on something?<br>Let's make it.</h2>
+        <p class="sub">Tell us what you're building. We'll figure out how to make it look the part.</p>
+        <a href="index.html#contact" class="btn-primary">Start a Project</a>
+    </div>
+
+    <footer>
+        <div>
+            <p class="logo">Enforma</p>
+            <div class="contact-links">
+                <p>Melbourne, Australia</p>
+                <a href="mailto:hello@enforma.agency">hello@enforma.agency</a>
+                <a href="https://www.instagram.com/enforma___" target="_blank">Instagram</a>
+                <a href="https://www.linkedin.com/company/enforma-agency" target="_blank">LinkedIn</a>
+                <a href="index.html">Back to home →</a>
+            </div>
+        </div>
+        <div>
+            <p class="tagline">Creative direction and video production for businesses that want to look and operate like brands. Built in Melbourne. Working everywhere.</p>
+        </div>
+    </footer>
+
+    <script>
+        // NAV SCROLL
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            nav.style.background = window.scrollY > 50 ? 'rgba(10,10,10,0.97)' : 'rgba(10,10,10,0.85)';
+            document.querySelector('.back-to-top').classList.toggle('show', window.scrollY > 300);
+        });
+
+        // SCROLL REVEAL
+        const revealEls = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+        revealEls.forEach(el => observer.observe(el));
+
+        // FILTER
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const cards = document.querySelectorAll('.work-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+
+                cards.forEach(card => {
+                    const cat = card.dataset.category;
+                    const show = filter === 'all' || cat === filter;
+                    card.style.display = show ? '' : 'none';
+
+                    // reset featured span on filter
+                    if (filter !== 'all' && card.classList.contains('featured')) {
+                        card.style.gridColumn = show ? '' : '';
+                    }
+                });
+
+                // fix featured span when filtering
+                const visibleCards = [...cards].filter(c => c.style.display !== 'none');
+                visibleCards.forEach((card, i) => {
+                    card.classList.remove('featured');
+                    if (i === 0 && filter === 'all') card.classList.add('featured');
+                });
+            });
+        });
+
+        // LIGHTBOX
+        let currentAspect = '9/16';
+
+        function openLightbox(card) {
+            const id = card.dataset.youtube;
+            const title = card.dataset.title;
+            const tag = card.dataset.tag;
+
+            document.getElementById('lightbox-title').textContent = title;
+            document.getElementById('lightbox-tag').textContent = tag;
+
+            // detect aspect from card class
+            const isFeatured = card.classList.contains('featured');
+            const aspect = isFeatured ? '56.25%' : '177.78%';
+
+            document.getElementById('lightbox-video').innerHTML = `
+                <div style="position:relative; padding-bottom:${aspect}; height:0;">
+                    <iframe
+                        src="https://www.youtube.com/embed/${id}?autoplay=1&rel=0"
+                        style="position:absolute;top:0;left:0;width:100%;height:100%;"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>`;
+
+            document.getElementById('lightbox').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('open');
+            document.getElementById('lightbox-video').innerHTML = '';
+            document.body.style.overflow = '';
+        }
+
+        function closeLightboxOnBg(e) {
+            if (e.target === document.getElementById('lightbox')) closeLightbox();
+        }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+    </script>
+
+</body>
+</html>
