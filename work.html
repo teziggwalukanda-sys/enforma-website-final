@@ -1,816 +1,330 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Enforma — Our Work. Brand promos, event coverage, social content, and product launches for businesses that want to look like brands.">
-    <title>Our Work — Enforma</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #0a0a0a;
-            color: #fff;
-            line-height: 1.6;
-        }
-
-        a { color: inherit; text-decoration: none; }
-
-        /* GRAIN */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            opacity: 0.025;
-            pointer-events: none;
-            z-index: 9999;
-        }
-
-        /* NAV */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 60px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(10, 10, 10, 0.85);
-            backdrop-filter: blur(12px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            transition: background 0.3s;
-        }
-
-        nav .logo img { height: 40px; width: auto; }
-
-        nav ul { list-style: none; display: flex; gap: 40px; }
-
-        nav a {
-            font-family: 'Syne', sans-serif;
-            font-size: 11px;
-            font-weight: 500;
-            opacity: 0.5;
-            transition: opacity 0.2s;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        nav a:hover, nav a.active { opacity: 1; }
-        nav a.nav-active { opacity: 1; }
-
-        /* BACK TO TOP */
-        .back-to-top {
-            position: fixed;
-            bottom: 40px;
-            right: 40px;
-            width: 48px;
-            height: 48px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-            z-index: 999;
-            font-size: 16px;
-        }
-
-        .back-to-top.show { opacity: 1; visibility: visible; }
-        .back-to-top:hover { background: rgba(255, 255, 255, 0.15); transform: translateY(-4px); }
-
-        /* HERO */
-        .hero {
-            padding: 200px 60px 80px;
-            margin-top: 80px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            position: relative;
-        }
-
-        .hero-inner {
-            max-width: 1200px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            gap: 60px;
-            flex-wrap: wrap;
-        }
-
-        .hero-left { flex: 1; min-width: 280px; }
-
-        .hero-eyebrow {
-            font-family: 'Syne', sans-serif;
-            font-size: 10px;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            opacity: 0.35;
-            margin-bottom: 24px;
-            animation: fadeUp 0.7s ease both;
-        }
-
-        .hero h1 {
-            font-family: 'Syne', sans-serif;
-            font-size: 72px;
-            font-weight: 700;
-            letter-spacing: -0.04em;
-            line-height: 1.0;
-            animation: fadeUp 0.7s 0.08s ease both;
-        }
-
-        .hero-right {
-            max-width: 360px;
-            animation: fadeUp 0.7s 0.16s ease both;
-        }
-
-        .hero-right p {
-            font-size: 15px;
-            opacity: 0.45;
-            line-height: 1.8;
-            margin-bottom: 28px;
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 40px;
-        }
-
-        .stat-item {}
-
-        .stat-num {
-            font-family: 'Syne', sans-serif;
-            font-size: 28px;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 4px;
-        }
-
-        .stat-label {
-            font-size: 11px;
-            opacity: 0.35;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            font-family: 'Syne', sans-serif;
-        }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* FILTER BAR */
-        .filter-bar {
-            padding: 0 60px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            display: flex;
-            gap: 0;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-        }
-
-        .filter-bar::-webkit-scrollbar { display: none; }
-
-        .filter-btn {
-            font-family: 'Syne', sans-serif;
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            padding: 20px 28px;
-            background: none;
-            border: none;
-            color: #fff;
-            opacity: 0.35;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: all 0.2s;
-            border-bottom: 2px solid transparent;
-            margin-bottom: -1px;
-        }
-
-        .filter-btn:hover { opacity: 0.7; }
-        .filter-btn.active { opacity: 1; border-bottom-color: #fff; }
-
-        /* GRID */
-        .work-grid {
-            padding: 60px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2px;
-        }
-
-        /* VIDEO CARD */
-        .work-card {
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            background: #111;
-            aspect-ratio: 9/16;
-        }
-
-        .work-card:nth-child(3n+1):first-child,
-        .work-card.featured {
-            grid-column: span 2;
-            aspect-ratio: 16/9;
-        }
-
-        .work-card-thumb {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-            display: block;
-        }
-
-        .work-card:hover .work-card-thumb {
-            transform: scale(1.04);
-        }
-
-        .work-card-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
-            opacity: 0;
-            transition: opacity 0.35s;
-            display: flex;
-            align-items: flex-end;
-            padding: 28px;
-        }
-
-        .work-card:hover .work-card-overlay { opacity: 1; }
-
-        .work-card-always {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 24px;
-            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
-        }
-
-        .work-tag {
-            font-family: 'Syne', sans-serif;
-            font-size: 9px;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            opacity: 0.5;
-            margin-bottom: 6px;
-        }
-
-        .work-title {
-            font-family: 'Syne', sans-serif;
-            font-size: 16px;
-            font-weight: 600;
-            letter-spacing: -0.01em;
-            margin-bottom: 4px;
-        }
-
-        .work-desc {
-            font-size: 12px;
-            opacity: 0;
-            transition: opacity 0.3s;
-            line-height: 1.5;
-            color: rgba(255,255,255,0.6);
-        }
-
-        .work-card:hover .work-desc { opacity: 1; }
-
-        .play-icon {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.8);
-            width: 56px;
-            height: 56px;
-            background: rgba(255,255,255,0.12);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: all 0.3s;
-        }
-
-        .play-icon svg {
-            width: 18px;
-            height: 18px;
-            fill: #fff;
-            margin-left: 3px;
-        }
-
-        .work-card:hover .play-icon {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        /* HIDDEN CARDS */
-        .work-card[data-hidden="true"] { display: none; }
-
-        /* LIGHTBOX */
-        .lightbox {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.96);
-            z-index: 9998;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-            padding: 40px;
-        }
-
-        .lightbox.open {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .lightbox-inner {
-            width: 100%;
-            max-width: 900px;
-            position: relative;
-        }
-
-        .lightbox-video {
-            position: relative;
-            width: 100%;
-            border-radius: 4px;
-            overflow: hidden;
-            background: #000;
-        }
-
-        .lightbox-video iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: -52px;
-            right: 0;
-            font-family: 'Syne', sans-serif;
-            font-size: 11px;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            opacity: 0.5;
-            cursor: pointer;
-            transition: opacity 0.2s;
-            background: none;
-            border: none;
-            color: #fff;
-            padding: 8px 0;
-        }
-
-        .lightbox-close:hover { opacity: 1; }
-
-        .lightbox-meta {
-            margin-top: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .lightbox-tag {
-            font-family: 'Syne', sans-serif;
-            font-size: 10px;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            opacity: 0.35;
-        }
-
-        .lightbox-title {
-            font-family: 'Syne', sans-serif;
-            font-size: 18px;
-            font-weight: 600;
-            letter-spacing: -0.01em;
-            margin-top: 6px;
-        }
-
-        .lightbox-cta {
-            font-family: 'Syne', sans-serif;
-            font-size: 11px;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            opacity: 0.5;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-            padding-bottom: 2px;
-            transition: all 0.2s;
-            white-space: nowrap;
-        }
-
-        .lightbox-cta:hover { opacity: 1; border-color: rgba(255,255,255,0.6); }
-
-        /* CTA SECTION */
-        .cta-section {
-            padding: 120px 60px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            text-align: center;
-        }
-
-        .cta-section p.label {
-            font-family: 'Syne', sans-serif;
-            font-size: 10px;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            opacity: 0.35;
-            margin-bottom: 28px;
-        }
-
-        .cta-section h2 {
-            font-family: 'Syne', sans-serif;
-            font-size: 52px;
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            line-height: 1.1;
-            margin-bottom: 20px;
-        }
-
-        .cta-section p.sub {
-            font-size: 15px;
-            opacity: 0.45;
-            max-width: 480px;
-            margin: 0 auto 48px;
-            line-height: 1.8;
-        }
-
-        .btn-primary {
-            display: inline-block;
-            padding: 16px 44px;
-            background: #fff;
-            color: #000;
-            border-radius: 4px;
-            font-family: 'Syne', sans-serif;
-            font-weight: 600;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            transition: all 0.3s;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 16px 40px rgba(255,255,255,0.15);
-        }
-
-        /* FOOTER */
-        footer {
-            padding: 60px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-        }
-
-        footer .logo {
-            font-family: 'Syne', sans-serif;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 0.15em;
-            margin-bottom: 36px;
-            text-transform: uppercase;
-        }
-
-        .contact-links { display: flex; flex-direction: column; gap: 10px; }
-        .contact-links p { font-size: 13px; opacity: 0.4; margin: 0; }
-        .contact-links a { font-size: 13px; opacity: 0.5; transition: all 0.2s; display: inline-block; }
-        .contact-links a:hover { opacity: 1; transform: translateX(4px); }
-        .tagline { font-size: 14px; opacity: 0.4; line-height: 1.9; }
-
-        /* SCROLL REVEAL */
-        .reveal {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
-
-        /* MOBILE */
-        @media (max-width: 900px) {
-            nav { padding: 15px 24px; }
-            nav ul { gap: 18px; }
-            .hero { padding: 140px 24px 60px; }
-            .hero h1 { font-size: 48px; }
-            .hero-inner { flex-direction: column; gap: 36px; }
-            .hero-right { max-width: 100%; }
-            .filter-bar { padding: 0 24px; }
-            .work-grid { padding: 24px; gap: 12px; grid-template-columns: 1fr 1fr; }
-            .work-card.featured { grid-column: span 2; }
-            .cta-section { padding: 80px 24px; }
-            .cta-section h2 { font-size: 36px; }
-            footer { grid-template-columns: 1fr; padding: 48px 24px; }
-            .lightbox { padding: 20px; }
-            .back-to-top { bottom: 24px; right: 24px; width: 40px; height: 40px; }
-        }
-
-        @media (max-width: 540px) {
-            .work-grid { grid-template-columns: 1fr; gap: 2px; padding: 0; }
-            .work-card.featured { grid-column: span 1; aspect-ratio: 9/16; }
-            .work-card { aspect-ratio: 9/16; }
-            .work-card-overlay { opacity: 1; }
-            .work-desc { opacity: 1; }
-            .play-icon { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Enforma — Selected work across video production, brand promos, event coverage, and hospitality.">
+<title>Work — Enforma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+:root{--black:#080808;--dark:#0e0e0e;--card:#111;--border:rgba(255,255,255,.07);--border-h:rgba(255,255,255,.18);--muted:rgba(255,255,255,.45);--faint:rgba(255,255,255,.18);--gold:#c9a96e;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--black);color:#fff;overflow-x:hidden;}
+body.lock{overflow:hidden;}
+a{color:inherit;text-decoration:none;}
+img{display:block;}
+button{font-family:'DM Sans',sans-serif;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.028;pointer-events:none;z-index:9000;}
+
+/* TICKER */
+.ticker-banner{width:100%;background:var(--black);border-bottom:1px solid var(--border);overflow:hidden;height:32px;display:flex;align-items:center;position:fixed;top:0;z-index:1001;}
+.ticker-track{display:flex;align-items:center;gap:28px;white-space:nowrap;animation:ticker 30s linear infinite;}
+.ticker-track span{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);}
+.ticker-track .dot{color:var(--faint);}
+@keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* NAV */
+nav{position:fixed;top:32px;width:100%;z-index:1000;padding:0 48px;background:#080808;border-bottom:1px solid rgba(255,255,255,.07);transition:background .4s,backdrop-filter .4s;}
+nav.scrolled{background:rgba(8,8,8,.96);backdrop-filter:blur(16px);border-bottom-color:var(--border);}
+
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:64px;}
+.nav-logo img{height:26px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:36px;}
+.nl{font-family:'Syne',sans-serif;font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;opacity:.4;transition:opacity .2s;color:#fff;}
+.nl:hover,.nl.active{opacity:1;}
+.nl-cta{opacity:1!important;}
+.nav-ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;}
+.nav-ham span{width:22px;height:1px;background:#fff;transition:all .3s;}
+
+/* MOBILE MENU */
+.mob{position:fixed;inset:0;background:#080808;z-index:900;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;opacity:0;visibility:hidden;transition:all .35s;}
+.mob.open{opacity:1;visibility:visible;}
+.mob a{font-family:'Syne',sans-serif;font-size:40px;font-weight:700;color:#fff;opacity:.2;transition:opacity .2s;letter-spacing:-.02em;line-height:1.3;}
+.mob a:hover{opacity:1;}
+.mob-cta{color:var(--gold)!important;opacity:.7!important;}
+
+/* BTT */
+.btt{position:fixed;bottom:28px;right:28px;width:40px;height:40px;border:1px solid var(--border);background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;visibility:hidden;transition:all .3s;z-index:999;font-size:14px;color:var(--muted);border-radius:50%;}
+.btt.show{opacity:1;visibility:visible;}
+
+/* SHARED SECTION */
+.section{padding:100px 48px;border-top:1px solid var(--border);}
+.section-hero{padding-top:152px;}
+.lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:16px;}
+.display{font-family:'Syne',sans-serif;font-size:clamp(32px,4.5vw,64px);font-weight:700;line-height:1.05;letter-spacing:-.03em;}
+
+/* BUTTONS */
+.btn-primary{display:inline-block;padding:14px 40px;background:#fff;color:#000;border-radius:2px;font-family:'Syne',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.14em;transition:all .3s;border:1px solid #fff;}
+.btn-primary:hover{background:transparent;color:#fff;}
+.btn-outline{display:inline-block;padding:14px 40px;background:transparent;color:#fff;border-radius:2px;font-family:'Syne',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.14em;transition:all .3s;border:1px solid var(--border-h);}
+.btn-outline:hover{background:#fff;color:#000;border-color:#fff;}
+.btn-ghost{font-family:'Syne',sans-serif;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);transition:color .2s;}
+.btn-ghost:hover{color:#fff;}
+.btn-ghost::after{content:' →';}
+.see-all{font-family:'Syne',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:.5;transition:opacity .2s;}
+.see-all::after{content:' →';}
+.see-all:hover{opacity:1;}
+
+/* REVEAL */
+.rev{opacity:0;transform:translateY(22px);transition:opacity .75s ease,transform .75s ease;}
+.rev.in{opacity:1;transform:none;}
+.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}
+
+/* MODAL */
+.modal{position:fixed;inset:0;z-index:7000;background:rgba(0,0,0,.97);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .3s;}
+.modal.open{opacity:1;visibility:visible;}
+.modal-close{position:absolute;top:28px;right:36px;font-size:18px;color:rgba(255,255,255,.3);cursor:pointer;transition:color .2s;}
+.modal-close:hover{color:#fff;}
+.modal-frame{width:min(900px,90vw);aspect-ratio:16/9;background:#0a0a0a;overflow:hidden;}
+.modal-frame iframe{width:100%;height:100%;border:none;}
+
+/* WORK CARDS */
+.wcard{position:relative;overflow:hidden;cursor:pointer;background:#111;}
+.wcard img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s ease;}
+.wcard:hover img{transform:scale(1.03);}
+.wcard-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.85);width:44px;height:44px;border:1px solid rgba(255,255,255,.22);background:rgba(8,8,8,.5);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;opacity:0;transition:all .3s;border-radius:50%;}
+.wcard:hover .wcard-play{opacity:1;transform:translate(-50%,-50%) scale(1);}
+.wcard-play svg{width:11px;fill:#fff;margin-left:2px;}
+.wcard-cap{padding:10px 0 0;}
+.wcard-cap-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:3px;}
+.wcard-cap-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:600;color:rgba(255,255,255,.7);}
+
+/* SERVICES */
+.svc-row{display:grid;grid-template-columns:56px 240px 1fr;gap:0;padding:28px 0;border-top:1px solid var(--border);align-items:start;}
+.svc-row:last-child{border-bottom:1px solid var(--border);}
+.svc-n{font-family:'DM Mono',monospace;font-size:10px;color:var(--faint);padding-top:3px;}
+.svc-name{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;letter-spacing:-.02em;padding-top:2px;}
+.svc-desc{font-size:14px;color:var(--muted);line-height:1.85;max-width:500px;}
+
+/* CTA BAND */
+.cta-band{padding:80px 48px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.cta-band h2{font-family:'Syne',sans-serif;font-size:clamp(28px,3.5vw,52px);font-weight:700;letter-spacing:-.03em;line-height:1.1;}
+
+/* FAQ */
+.faq-item{border-bottom:1px solid var(--border);padding:24px 0;}
+.faq-item:first-child{border-top:1px solid var(--border);}
+.faq-q{cursor:pointer;display:flex;justify-content:space-between;gap:20px;user-select:none;}
+.faq-q p{font-size:15px;font-weight:500;flex:1;}
+.faq-tog{font-size:13px;color:var(--muted);transition:transform .3s;flex-shrink:0;margin-top:3px;}
+.faq-tog.open{transform:rotate(180deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s;}
+.faq-a.open{max-height:400px;margin-top:14px;}
+.faq-a p{font-size:14px;color:var(--muted);line-height:1.85;}
+
+/* FOOTER */
+footer{background:#080808;padding:64px 48px 0;border-top:1px solid var(--border);}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid var(--border);}
+.foot-logo img{height:22px;margin-bottom:16px;}
+.foot-tag{font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,.2);line-height:1.9;letter-spacing:.06em;text-transform:uppercase;}
+.foot-col h5{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-bottom:16px;}
+.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.foot-col a,.foot-col p{font-size:13px;color:rgba(255,255,255,.35);display:block;margin-bottom:4px;transition:color .2s;}
+.foot-col a:hover{color:#fff;}
+.foot-btm{display:flex;justify-content:space-between;align-items:center;padding:20px 0;}
+.foot-btm p{font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,.18);letter-spacing:.1em;}
+
+/* MOBILE */
+@media(max-width:640px){
+  nav{padding:0 24px;}
+  .nav-links{display:none;}
+  .nav-ham{display:flex;}
+  .section{padding:72px 24px;}
+  .section-hero{padding-top:132px;}
+  .cta-band{padding:60px 24px;flex-direction:column;align-items:flex-start;}
+  .svc-row{grid-template-columns:40px 1fr;grid-template-rows:auto auto;gap:4px 0;}
+  .svc-desc{grid-column:2;margin-top:6px;}
+  footer{padding:48px 24px 0;}
+  .foot-grid{grid-template-columns:1fr;gap:32px;}
+  .foot-btm{flex-direction:column;gap:4px;text-align:center;}
+}
+@media(max-width:540px){
+  .mob a{font-size:32px;}
+}
+</style>
+<style>
+.page-hero{padding:140px 48px 60px;border-bottom:1px solid var(--border);}
+.page-hero h1{font-family:'Syne',sans-serif;font-size:clamp(48px,7vw,96px);font-weight:800;letter-spacing:-.04em;line-height:.95;margin-bottom:24px;}
+.page-hero p{font-size:15px;color:var(--muted);max-width:400px;line-height:1.8;}
+.page-hero-row{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap;}
+.hero-stats{display:flex;gap:40px;}
+.stat-num{font-family:'Syne',sans-serif;font-size:28px;font-weight:700;letter-spacing:-.02em;margin-bottom:4px;}
+.stat-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);}
+
+/* CATEGORY TABS */
+.work-cats{display:flex;gap:0;border-bottom:1px solid var(--border);padding:0 48px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.work-cats::-webkit-scrollbar{display:none;}
+.wcat{font-family:'Syne',sans-serif;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:16px 28px;background:none;border:none;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .2s;white-space:nowrap;}
+.wcat:hover{color:#fff;}
+.wcat.active{color:#fff;border-bottom-color:var(--gold);}
+.work-cat-panel{display:none;padding:48px;}
+.work-cat-panel.active{display:block;}
+.wgrid{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+.wgrid-3{display:grid;grid-template-columns:2fr 1fr;gap:2px;margin-bottom:2px;}
+.work-item{display:flex;flex-direction:column;}
+.wcard-v{aspect-ratio:9/16;}
+.wcard-h{aspect-ratio:16/9;}
+
+/* RANGE SECTION */
+.range-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:0;}
+.range-card{padding:32px;background:var(--card);border:1px solid var(--border);}
+.range-card-num{font-family:'DM Mono',monospace;font-size:10px;color:var(--faint);margin-bottom:14px;display:block;letter-spacing:.1em;}
+.range-card h4{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:10px;letter-spacing:-.01em;}
+.range-card p{font-size:13px;color:var(--muted);line-height:1.8;}
+
+@media(max-width:640px){
+  .page-hero{padding:120px 24px 48px;}
+  .work-cats{padding:0 24px;}
+  .work-cat-panel{padding:32px 24px;}
+  .wgrid,.wgrid-3{grid-template-columns:1fr;}
+  .range-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:540px){
+  .range-grid{grid-template-columns:1fr;}
+  .hero-stats{gap:28px;}
+}
+</style>
 </head>
-<body>
+<body class="">
+<div class="modal" id="modal">
+  <div class="modal-close" onclick="closeModal()">✕</div>
+  <div class="modal-frame" id="modal-frame"></div>
+</div>
+<div class="ticker-banner">
+  <div class="ticker-track">
+    <span>Creative Direction</span><span class="dot">·</span><span>Video Production</span><span class="dot">·</span><span>Website Design</span><span class="dot">·</span><span>Melbourne, Australia</span><span class="dot">·</span><span>hello@enforma.agency</span><span class="dot">·</span><span>Creative Direction</span><span class="dot">·</span><span>Video Production</span><span class="dot">·</span><span>Website Design</span><span class="dot">·</span><span>Melbourne, Australia</span><span class="dot">·</span><span>hello@enforma.agency</span><span class="dot">·</span>
+  </div>
+</div>
+<nav id="nav" ><div class="nav-in"><div class="nav-logo"><a href="index.html"><img src="enformalogotexttransparentAsset_7.png" alt="Enforma" style="filter:brightness(0) invert(1);"></a></div><div class="nav-links"><a class="nl active" href="work.html">Work</a><a class="nl" href="services.html">Services</a><a class="nl" href="about.html">About</a><a class="nl nl-cta" href="contact.html">Work With Us</a></div><div class="nav-ham" onclick="toggleMob()"><span></span><span></span></div></div></nav>
+<div class="mob" id="mob">
+  <a href="work.html" onclick="toggleMob()">Work</a>
+  <a href="services.html" onclick="toggleMob()">Services</a>
+  <a href="about.html" onclick="toggleMob()">About</a>
+  <a href="contact.html" onclick="toggleMob()" class="mob-cta">Work With Us</a>
+</div>
+<div class="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
 
-    <nav>
-        <div class="logo"><a href="index.html"><img src="enformalogotexttransparentAsset_7.png" alt="Enforma"></a></div>
-        <ul>
-            <li><a href="index.html#services">Services</a></li>
-            <li><a href="work.html" class="nav-active">Work</a></li>
-            <li><a href="index.html#about">About</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <div class="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</div>
-
-    <!-- HERO -->
-    <div class="hero">
-        <div class="hero-inner">
-            <div class="hero-left">
-                <p class="hero-eyebrow">Selected Work</p>
-                <h1>The work<br>speaks.</h1>
-            </div>
-            <div class="hero-right">
-                <p>Brand promos, event coverage, social content series, product launches. Three selected projects. Across events, trade, and hospitality. The full body of work spans 15+ projects — this is the range.</p>
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <p class="stat-num">3</p>
-                        <p class="stat-label">Selected</p>
-                    </div>
-                    <div class="stat-item">
-                        <p class="stat-num">15+</p>
-                        <p class="stat-label">Projects</p>
-                    </div>
-                    <div class="stat-item">
-                        <p class="stat-num">AU</p>
-                        <p class="stat-label">Based</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-row">
+    <div>
+      <span class="lbl rev">Selected Work</span>
+      <h1 class="rev">The work<br>speaks.</h1>
     </div>
-
-    <!-- FILTER -->
-    <div class="filter-bar">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="event-coverage">Event Coverage</button>
-        <button class="filter-btn" data-filter="brand-promo">Brand Promo</button>
-        <button class="filter-btn" data-filter="venue-reel">Venue Reel</button>
+    <div class="rev d1">
+      <p style="margin-bottom:28px;">Three selected projects. Across events, trade, and hospitality. The full body of work spans 15+ projects.</p>
+      <div class="hero-stats">
+        <div><p class="stat-num">3</p><p class="stat-lbl">Selected</p></div>
+        <div><p class="stat-num">15+</p><p class="stat-lbl">Projects</p></div>
+        <div><p class="stat-num">AU</p><p class="stat-lbl">Based</p></div>
+      </div>
     </div>
+  </div>
+</div>
 
-    <!-- WORK GRID -->
-    <div class="work-grid" id="work-grid">
+<!-- CATEGORY TABS -->
+<div class="work-cats">
+  <button class="wcat active" data-cat="smallbiz">Small Business</button>
+  <button class="wcat" data-cat="trade">Trade</button>
+  <button class="wcat" data-cat="hospitality">Hospitality</button>
+  <button class="wcat" data-cat="personal">Personal Brand</button>
+</div>
 
-        <!-- CARD 1 — featured -->
-        <div class="work-card featured reveal"
-             data-category="event-coverage"
-             data-title="Gary Payton Tour · Sydney"
-             data-tag="Event Coverage"
-             data-desc="Full event recap for King of the Court. Shot and directed on the day."
-             data-youtube="eqZ5SS4UahI"
-             onclick="openLightbox(this)">
-            <img class="work-card-thumb" src="https://img.youtube.com/vi/eqZ5SS4UahI/maxresdefault.jpg" alt="Gary Payton Tour Sydney" loading="lazy">
-            <div class="play-icon">
-                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-            </div>
-            <div class="work-card-always">
-                <p class="work-tag">Event Coverage</p>
-                <p class="work-title">Gary Payton Tour · Sydney</p>
-                <p class="work-desc">Full event recap for King of the Court.</p>
-            </div>
-        </div>
+<!-- SMALL BUSINESS -->
+<div class="work-cat-panel active" data-panel="smallbiz">
+  <div class="wgrid rev">
+    <div class="work-item"><div class="wcard wcard-v" onclick="playVideo('8g_ouU4Red0')"><img src="https://img.youtube.com/vi/8g_ouU4Red0/maxresdefault.jpg" alt="Gym Owner" loading="lazy"><div class="wcard-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div><div class="wcard-cap"><span class="wcard-cap-tag">Small Business · Fitness</span><p class="wcard-cap-title">Gym Owner</p></div></div>
+    <div class="work-item"><div class="wcard wcard-v" onclick="playVideo('fjab_DntzFM')"><img src="https://img.youtube.com/vi/fjab_DntzFM/maxresdefault.jpg" alt="Gym Owner 2" loading="lazy"><div class="wcard-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div><div class="wcard-cap"><span class="wcard-cap-tag">Small Business · Fitness</span><p class="wcard-cap-title">Gym Owner</p></div></div>
+  </div>
+</div>
 
-        <!-- CARD 2 -->
-        <div class="work-card reveal"
-             data-category="brand-promo"
-             data-title="AVCON Group"
-             data-tag="Brand Promo"
-             data-desc="Brand film and promotional content for a construction and trade company."
-             data-youtube="GFtA4rWArIM"
-             onclick="openLightbox(this)">
-            <img class="work-card-thumb" src="https://img.youtube.com/vi/GFtA4rWArIM/maxresdefault.jpg" alt="AVCON Group" loading="lazy">
-            <div class="play-icon">
-                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-            </div>
-            <div class="work-card-always">
-                <p class="work-tag">Brand Promo</p>
-                <p class="work-title">AVCON Group</p>
-                <p class="work-desc">Brand film for a construction and trade company.</p>
-            </div>
-        </div>
+<!-- TRADE -->
+<div class="work-cat-panel" data-panel="trade">
+  <div class="wgrid rev">
+    <div class="work-item"><div class="wcard wcard-v" onclick="playVideo('hu0aRQbff0Y')"><img src="https://img.youtube.com/vi/hu0aRQbff0Y/maxresdefault.jpg" alt="On the Tools" loading="lazy"><div class="wcard-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div><div class="wcard-cap"><span class="wcard-cap-tag">Trade · Short</span><p class="wcard-cap-title">On the Tools</p></div></div>
+    <div class="work-item"><div class="wcard wcard-v" onclick="playVideo('DclBI4vd1b8')"><img src="https://img.youtube.com/vi/DclBI4vd1b8/maxresdefault.jpg" alt="Built Different" loading="lazy"><div class="wcard-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div><div class="wcard-cap"><span class="wcard-cap-tag">Trade · Short</span><p class="wcard-cap-title">Built Different</p></div></div>
+  </div>
+</div>
 
-        <!-- CARD 3 -->
-        <div class="work-card reveal"
-             data-category="venue-reel"
-             data-title="Anaia · Venue Reel"
-             data-tag="Venue Reel"
-             data-desc="Hospitality venue reel for Anaia."
-             data-youtube="p-tStDmsrx8"
-             onclick="openLightbox(this)">
-            <img class="work-card-thumb" src="https://img.youtube.com/vi/p-tStDmsrx8/maxresdefault.jpg" alt="Anaia Promotional Reel" loading="lazy">
-            <div class="play-icon">
-                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-            </div>
-            <div class="work-card-always">
-                <p class="work-tag">Venue Reel</p>
-                <p class="work-title">Anaia · Venue Reel</p>
-                <p class="work-desc">Hospitality venue reel for Anaia.</p>
-            </div>
-        </div>
+<!-- HOSPITALITY -->
+<div class="work-cat-panel" data-panel="hospitality">
+  <div class="rev" style="max-width:600px;">
+    <div class="work-item"><div class="wcard wcard-h" onclick="playVideo('p-tStDmsrx8')"><img src="https://img.youtube.com/vi/p-tStDmsrx8/maxresdefault.jpg" alt="Anaia" loading="lazy"><div class="wcard-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div><div class="wcard-cap"><span class="wcard-cap-tag">Hospitality · Venue Reel</span><p class="wcard-cap-title">Anaia</p></div></div>
+  </div>
+</div>
 
+<!-- PERSONAL BRAND -->
+<div class="work-cat-panel" data-panel="personal">
+  <div class="wgrid rev">
+    <div class="work-item"><div class="wcard wcard-v" onclick="playVideo('T3jr7SXBCXk')"><img src="https://img.youtube.com/vi/T3jr7SXBCXk/maxresdefault.jpg" alt="Lukanda" loading="lazy"><div class="wcard-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div><div class="wcard-cap"><span class="wcard-cap-tag">Personal Brand</span><p class="wcard-cap-title">Lukanda</p></div></div>
+    <div class="work-item"><div class="wcard wcard-v" onclick="playVideo('o3_kLmUH5h8')"><img src="https://img.youtube.com/vi/o3_kLmUH5h8/maxresdefault.jpg" alt="Lukanda 2" loading="lazy"><div class="wcard-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div><div class="wcard-cap"><span class="wcard-cap-tag">Personal Brand</span><p class="wcard-cap-title">Lukanda</p></div></div>
+  </div>
+</div>
 
-    </div>
+<!-- RANGE -->
+<section class="section">
+  <span class="lbl rev">What we've covered</span>
+  <h2 class="display rev" style="margin-bottom:40px;">15+ projects across every format.</h2>
+  <div class="range-grid rev">
+    <div class="range-card"><span class="range-card-num">01</span><h4>Event Coverage</h4><p>Full-day recaps, highlight reels, same-day edits. Worked with King of the Court on NBA touring events across Sydney and Melbourne.</p></div>
+    <div class="range-card"><span class="range-card-num">02</span><h4>Brand Promos</h4><p>Promotional films for trade, construction, and fashion. Built to work across web, social, and presentations. AVCON Group, Basic Respect, and more.</p></div>
+    <div class="range-card"><span class="range-card-num">03</span><h4>Venue Reels</h4><p>Hospitality and lifestyle venues. Shot to capture atmosphere, not just space. Content that makes someone want to book a table.</p></div>
+    <div class="range-card"><span class="range-card-num">04</span><h4>Social Content</h4><p>Short-form built for Instagram and TikTok. Ongoing series for fashion brands and product drops. Edited for the scroll, not just the brand deck.</p></div>
+    <div class="range-card"><span class="range-card-num">05</span><h4>Product Launches</h4><p>Launch content timed to drops and campaigns. Built Basic Respect's visual identity from the ground up — product, campaign, and content all aligned.</p></div>
+    <div class="range-card"><span class="range-card-num">06</span><h4>Personal Brand</h4><p>Content built around individuals. Profile pieces, day-in-the-life, and authority content for founders, trainers, and creatives.</p></div>
+  </div>
+</section>
 
-    <!-- RANGE OF WORK -->
-    <div style="padding: 80px 60px; border-top: 1px solid rgba(255,255,255,0.07);">
-        <p style="font-family:'Syne',sans-serif;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:20px;display:block;">What we've covered</p>
-        <h2 style="font-family:'Syne',sans-serif;font-size:clamp(28px,4vw,48px);font-weight:700;letter-spacing:-0.025em;line-height:1.1;margin-bottom:48px;">15+ projects across<br>every format.</h2>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;">
-            <div style="padding:36px;background:#111;border:1px solid rgba(255,255,255,0.07);border-radius:2px;">
-                <p style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:16px;">Format</p>
-                <h4 style="font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:12px;letter-spacing:-0.01em;">Event Coverage</h4>
-                <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.8;">Full-day event recaps, highlights reels, same-day edits. Worked with King of the Court on NBA touring events across Sydney and Melbourne.</p>
-            </div>
-            <div style="padding:36px;background:#111;border:1px solid rgba(255,255,255,0.07);border-radius:2px;">
-                <p style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:16px;">Format</p>
-                <h4 style="font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:12px;letter-spacing:-0.01em;">Brand Promos</h4>
-                <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.8;">Promotional films for trade, construction, and fashion. Built to work across web, social, and presentation decks. AVCON Group, Basic Respect, and more.</p>
-            </div>
-            <div style="padding:36px;background:#111;border:1px solid rgba(255,255,255,0.07);border-radius:2px;">
-                <p style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:16px;">Format</p>
-                <h4 style="font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:12px;letter-spacing:-0.01em;">Venue Reels</h4>
-                <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.8;">Hospitality and lifestyle venues. Shot to capture atmosphere, not just space. The kind of content that makes someone want to book a table.</p>
-            </div>
-            <div style="padding:36px;background:#111;border:1px solid rgba(255,255,255,0.07);border-radius:2px;">
-                <p style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:16px;">Format</p>
-                <h4 style="font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:12px;letter-spacing:-0.01em;">Social Content</h4>
-                <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.8;">Short-form content built for Instagram and TikTok. Ongoing series for fashion brands and product drops. Edited for the scroll, not just the brand deck.</p>
-            </div>
-            <div style="padding:36px;background:#111;border:1px solid rgba(255,255,255,0.07);border-radius:2px;">
-                <p style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:16px;">Format</p>
-                <h4 style="font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:12px;letter-spacing:-0.01em;">Product Launches</h4>
-                <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.8;">Launch content timed to drops and campaigns. Built Basic Respect's visual identity from the ground up — product, campaign, and content all aligned.</p>
-            </div>
-            <div style="padding:36px;background:#111;border:1px solid rgba(255,255,255,0.07);border-radius:2px;">
-                <p style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:16px;">Format</p>
-                <h4 style="font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:12px;letter-spacing:-0.01em;">Brand Identity</h4>
-                <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.8;">Creative direction across the full brand. Visual language, tone, content strategy. The work that makes everything else consistent.</p>
-            </div>
-        </div>
-    </div>
+<!-- CTA -->
+<div class="cta-band rev">
+  <h2>Working on something?<br>Let's make it.</h2>
+  <a href="contact.html" class="btn-primary">Start a Project</a>
+</div>
 
-    <!-- LIGHTBOX -->
-    <div class="lightbox" id="lightbox" onclick="closeLightboxOnBg(event)">
-        <div class="lightbox-inner">
-            <button class="lightbox-close" onclick="closeLightbox()">Close ✕</button>
-            <div class="lightbox-video" id="lightbox-video"></div>
-            <div class="lightbox-meta">
-                <div>
-                    <p class="lightbox-tag" id="lightbox-tag"></p>
-                    <p class="lightbox-title" id="lightbox-title"></p>
-                </div>
-                <a href="index.html#contact" class="lightbox-cta">Work with us →</a>
-            </div>
-        </div>
-    </div>
+<script>
+document.querySelectorAll('.wcat').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('.wcat').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.work-cat-panel').forEach(x=>x.classList.remove('active'));
+  t.classList.add('active');
+  document.querySelector(`[data-panel="${t.dataset.cat}"]`).classList.add('active');
+}));
+</script>
+<footer>
+  <div class="foot-grid">
+    <div><div class="foot-logo"><img src="enformalogotexttransparentAsset_7.png" alt="Enforma" style="filter:brightness(0) invert(1);"></div><p class="foot-tag">Creative Direction.<br>Video Production.<br>Website Design.</p></div>
+    <div class="foot-col"><h5>Navigation</h5><ul><li><a href="work.html">Work</a></li><li><a href="services.html">Services</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Work With Us</a></li></ul></div>
+    <div class="foot-col"><h5>Get in touch</h5><p>Melbourne, Australia</p><a href="mailto:hello@enforma.agency">hello@enforma.agency</a><a href="https://www.instagram.com/enforma___" target="_blank">Instagram</a><a href="https://www.linkedin.com/company/enforma-agency" target="_blank">LinkedIn</a></div>
+  </div>
+  <div class="foot-btm"><p>© 2026 Enforma. All rights reserved.</p><p>Melbourne, Australia</p></div>
+</footer>
+<script>
 
-    <!-- CTA -->
-    <div class="cta-section reveal">
-        <p class="label">Ready to shoot</p>
-        <h2>Working on something?<br>Let's make it.</h2>
-        <p class="sub">Tell us what you're building. We'll figure out how to make it look the part.</p>
-        <a href="index.html#contact" class="btn-primary">Start a Project</a>
-    </div>
+function toggleMob(){
+  const m=document.getElementById('mob'),b=document.querySelectorAll('.nav-ham span');
+  const open=m.classList.toggle('open');
+  document.body.classList.toggle('lock',open);
+  b[0].style.transform=open?'rotate(45deg) translate(4px,4px)':'';
+  b[1].style.transform=open?'rotate(-45deg) translate(4px,-4px)':'';
+}
+function playVideo(id){
+  document.getElementById('modal-frame').innerHTML=`<iframe src="https://www.youtube.com/embed/${id}?autoplay=1&rel=0" allow="autoplay;encrypted-media" allowfullscreen></iframe>`;
+  document.getElementById('modal').classList.add('open');
+  document.body.classList.add('lock');
+}
+function closeModal(){document.getElementById('modal').classList.remove('open');document.getElementById('modal-frame').innerHTML='';document.body.classList.remove('lock');}
+document.getElementById('modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60);
+  document.querySelector('.btt').classList.toggle('show',window.scrollY>400);
+});
+const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);}});},{threshold:.07,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.rev').forEach(el=>ro.observe(el));
+function faq(el){el.nextElementSibling.classList.toggle('open');el.querySelector('.faq-tog').classList.toggle('open');}
 
-    <footer>
-        <div>
-            <p class="logo">Enforma</p>
-            <div class="contact-links">
-                <p>Melbourne, Australia</p>
-                <a href="mailto:hello@enforma.agency">hello@enforma.agency</a>
-                <a href="https://www.instagram.com/enforma___" target="_blank">Instagram</a>
-                <a href="https://www.linkedin.com/company/enforma-agency" target="_blank">LinkedIn</a>
-                <a href="index.html">Back to home →</a>
-            </div>
-        </div>
-        <div>
-            <p class="tagline">Creative direction and video production for businesses that want to look and operate like brands. Built in Melbourne. Working everywhere.</p>
-        </div>
-    </footer>
-
-    <script>
-        // NAV SCROLL
-        const nav = document.querySelector('nav');
-        window.addEventListener('scroll', () => {
-            nav.style.background = window.scrollY > 50 ? 'rgba(10,10,10,0.97)' : 'rgba(10,10,10,0.85)';
-            document.querySelector('.back-to-top').classList.toggle('show', window.scrollY > 300);
-        });
-
-        // SCROLL REVEAL
-        const revealEls = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-        revealEls.forEach(el => observer.observe(el));
-
-        // FILTER
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const cards = document.querySelectorAll('.work-card');
-
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-
-                const filter = btn.dataset.filter;
-
-                cards.forEach(card => {
-                    const cat = card.dataset.category;
-                    const show = filter === 'all' || cat === filter;
-                    card.style.display = show ? '' : 'none';
-
-                    // reset featured span on filter
-                    if (filter !== 'all' && card.classList.contains('featured')) {
-                        card.style.gridColumn = show ? '' : '';
-                    }
-                });
-
-                // fix featured span when filtering
-                const visibleCards = [...cards].filter(c => c.style.display !== 'none');
-                visibleCards.forEach((card, i) => {
-                    card.classList.remove('featured');
-                    if (i === 0 && filter === 'all') card.classList.add('featured');
-                });
-            });
-        });
-
-        // LIGHTBOX
-        let currentAspect = '9/16';
-
-        function openLightbox(card) {
-            const id = card.dataset.youtube;
-            const title = card.dataset.title;
-            const tag = card.dataset.tag;
-
-            document.getElementById('lightbox-title').textContent = title;
-            document.getElementById('lightbox-tag').textContent = tag;
-
-            // detect aspect from card class
-            const isFeatured = card.classList.contains('featured');
-            const aspect = isFeatured ? '56.25%' : '177.78%';
-
-            document.getElementById('lightbox-video').innerHTML = `
-                <div style="position:relative; padding-bottom:${aspect}; height:0;">
-                    <iframe
-                        src="https://www.youtube.com/embed/${id}?autoplay=1&rel=0"
-                        style="position:absolute;top:0;left:0;width:100%;height:100%;"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen>
-                    </iframe>
-                </div>`;
-
-            document.getElementById('lightbox').classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeLightbox() {
-            document.getElementById('lightbox').classList.remove('open');
-            document.getElementById('lightbox-video').innerHTML = '';
-            document.body.style.overflow = '';
-        }
-
-        function closeLightboxOnBg(e) {
-            if (e.target === document.getElementById('lightbox')) closeLightbox();
-        }
-
-        document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') closeLightbox();
-        });
-    </script>
-
+</script>
 </body>
 </html>
