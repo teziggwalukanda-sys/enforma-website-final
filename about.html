@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Enforma — Built in the field, not in theory. Melbourne-based creative direction and video production.">
+<title>About — Enforma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+:root{--black:#080808;--dark:#0e0e0e;--card:#111;--border:rgba(255,255,255,.07);--border-h:rgba(255,255,255,.18);--muted:rgba(255,255,255,.45);--faint:rgba(255,255,255,.18);--gold:#c9a96e;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--black);color:#fff;overflow-x:hidden;}
+body.lock{overflow:hidden;}
+a{color:inherit;text-decoration:none;}
+img{display:block;}
+button{font-family:'DM Sans',sans-serif;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.028;pointer-events:none;z-index:9000;}
+
+/* TICKER */
+.ticker-banner{width:100%;background:var(--black);border-bottom:1px solid var(--border);overflow:hidden;height:32px;display:flex;align-items:center;position:fixed;top:0;z-index:1001;}
+.ticker-track{display:flex;align-items:center;gap:28px;white-space:nowrap;animation:ticker 30s linear infinite;}
+.ticker-track span{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);}
+.ticker-track .dot{color:var(--faint);}
+@keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* NAV */
+nav{position:fixed;top:32px;width:100%;z-index:1000;padding:0 48px;background:#080808;border-bottom:1px solid rgba(255,255,255,.07);transition:background .4s,backdrop-filter .4s;}
+nav.scrolled{background:rgba(8,8,8,.96);backdrop-filter:blur(16px);border-bottom-color:var(--border);}
+
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:64px;}
+.nav-logo img{height:26px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:36px;}
+.nl{font-family:'Syne',sans-serif;font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;opacity:.4;transition:opacity .2s;color:#fff;}
+.nl:hover,.nl.active{opacity:1;}
+.nl-cta{opacity:1!important;}
+.nav-ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;}
+.nav-ham span{width:22px;height:1px;background:#fff;transition:all .3s;}
+
+/* MOBILE MENU */
+.mob{position:fixed;inset:0;background:#080808;z-index:900;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;opacity:0;visibility:hidden;transition:all .35s;}
+.mob.open{opacity:1;visibility:visible;}
+.mob a{font-family:'Syne',sans-serif;font-size:40px;font-weight:700;color:#fff;opacity:.2;transition:opacity .2s;letter-spacing:-.02em;line-height:1.3;}
+.mob a:hover{opacity:1;}
+.mob-cta{color:var(--gold)!important;opacity:.7!important;}
+
+/* BTT */
+.btt{position:fixed;bottom:28px;right:28px;width:40px;height:40px;border:1px solid var(--border);background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;visibility:hidden;transition:all .3s;z-index:999;font-size:14px;color:var(--muted);border-radius:50%;}
+.btt.show{opacity:1;visibility:visible;}
+
+/* SHARED SECTION */
+.section{padding:100px 48px;border-top:1px solid var(--border);}
+.section-hero{padding-top:152px;}
+.lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:16px;}
+.display{font-family:'Syne',sans-serif;font-size:clamp(32px,4.5vw,64px);font-weight:700;line-height:1.05;letter-spacing:-.03em;}
+
+/* BUTTONS */
+.btn-primary{display:inline-block;padding:14px 40px;background:#fff;color:#000;border-radius:2px;font-family:'Syne',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.14em;transition:all .3s;border:1px solid #fff;}
+.btn-primary:hover{background:transparent;color:#fff;}
+.btn-outline{display:inline-block;padding:14px 40px;background:transparent;color:#fff;border-radius:2px;font-family:'Syne',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.14em;transition:all .3s;border:1px solid var(--border-h);}
+.btn-outline:hover{background:#fff;color:#000;border-color:#fff;}
+.btn-ghost{font-family:'Syne',sans-serif;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);transition:color .2s;}
+.btn-ghost:hover{color:#fff;}
+.btn-ghost::after{content:' →';}
+.see-all{font-family:'Syne',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:.5;transition:opacity .2s;}
+.see-all::after{content:' →';}
+.see-all:hover{opacity:1;}
+
+/* REVEAL */
+.rev{opacity:0;transform:translateY(22px);transition:opacity .75s ease,transform .75s ease;}
+.rev.in{opacity:1;transform:none;}
+.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}
+
+/* MODAL */
+.modal{position:fixed;inset:0;z-index:7000;background:rgba(0,0,0,.97);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .3s;}
+.modal.open{opacity:1;visibility:visible;}
+.modal-close{position:absolute;top:28px;right:36px;font-size:18px;color:rgba(255,255,255,.3);cursor:pointer;transition:color .2s;}
+.modal-close:hover{color:#fff;}
+.modal-frame{width:min(900px,90vw);aspect-ratio:16/9;background:#0a0a0a;overflow:hidden;}
+.modal-frame iframe{width:100%;height:100%;border:none;}
+
+/* WORK CARDS */
+.wcard{position:relative;overflow:hidden;cursor:pointer;background:#111;}
+.wcard img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s ease;}
+.wcard:hover img{transform:scale(1.03);}
+.wcard-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.85);width:44px;height:44px;border:1px solid rgba(255,255,255,.22);background:rgba(8,8,8,.5);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;opacity:0;transition:all .3s;border-radius:50%;}
+.wcard:hover .wcard-play{opacity:1;transform:translate(-50%,-50%) scale(1);}
+.wcard-play svg{width:11px;fill:#fff;margin-left:2px;}
+.wcard-cap{padding:10px 0 0;}
+.wcard-cap-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:3px;}
+.wcard-cap-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:600;color:rgba(255,255,255,.7);}
+
+/* SERVICES */
+.svc-row{display:grid;grid-template-columns:56px 240px 1fr;gap:0;padding:28px 0;border-top:1px solid var(--border);align-items:start;}
+.svc-row:last-child{border-bottom:1px solid var(--border);}
+.svc-n{font-family:'DM Mono',monospace;font-size:10px;color:var(--faint);padding-top:3px;}
+.svc-name{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;letter-spacing:-.02em;padding-top:2px;}
+.svc-desc{font-size:14px;color:var(--muted);line-height:1.85;max-width:500px;}
+
+/* CTA BAND */
+.cta-band{padding:80px 48px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+.cta-band h2{font-family:'Syne',sans-serif;font-size:clamp(28px,3.5vw,52px);font-weight:700;letter-spacing:-.03em;line-height:1.1;}
+
+/* FAQ */
+.faq-item{border-bottom:1px solid var(--border);padding:24px 0;}
+.faq-item:first-child{border-top:1px solid var(--border);}
+.faq-q{cursor:pointer;display:flex;justify-content:space-between;gap:20px;user-select:none;}
+.faq-q p{font-size:15px;font-weight:500;flex:1;}
+.faq-tog{font-size:13px;color:var(--muted);transition:transform .3s;flex-shrink:0;margin-top:3px;}
+.faq-tog.open{transform:rotate(180deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s;}
+.faq-a.open{max-height:400px;margin-top:14px;}
+.faq-a p{font-size:14px;color:var(--muted);line-height:1.85;}
+
+/* FOOTER */
+footer{background:#080808;padding:64px 48px 0;border-top:1px solid var(--border);}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid var(--border);}
+.foot-logo img{height:22px;margin-bottom:16px;}
+.foot-tag{font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,.2);line-height:1.9;letter-spacing:.06em;text-transform:uppercase;}
+.foot-col h5{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-bottom:16px;}
+.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.foot-col a,.foot-col p{font-size:13px;color:rgba(255,255,255,.35);display:block;margin-bottom:4px;transition:color .2s;}
+.foot-col a:hover{color:#fff;}
+.foot-btm{display:flex;justify-content:space-between;align-items:center;padding:20px 0;}
+.foot-btm p{font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,.18);letter-spacing:.1em;}
+
+/* MOBILE */
+@media(max-width:640px){
+  nav{padding:0 24px;}
+  .nav-links{display:none;}
+  .nav-ham{display:flex;}
+  .section{padding:72px 24px;}
+  .section-hero{padding-top:132px;}
+  .cta-band{padding:60px 24px;flex-direction:column;align-items:flex-start;}
+  .svc-row{grid-template-columns:40px 1fr;grid-template-rows:auto auto;gap:4px 0;}
+  .svc-desc{grid-column:2;margin-top:6px;}
+  footer{padding:48px 24px 0;}
+  .foot-grid{grid-template-columns:1fr;gap:32px;}
+  .foot-btm{flex-direction:column;gap:4px;text-align:center;}
+}
+@media(max-width:540px){
+  .mob a{font-size:32px;}
+}
+</style>
+<style>
+.page-hero{padding:160px 48px 80px;border-bottom:1px solid var(--border);}
+.page-hero h1{font-family:'Syne',sans-serif;font-size:clamp(48px,7vw,96px);font-weight:800;letter-spacing:-.04em;line-height:.95;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.about-copy p{font-size:15px;color:var(--muted);line-height:1.9;margin-bottom:18px;}
+.about-img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;border-radius:2px;}
+.founder-card{display:flex;gap:20px;align-items:flex-start;padding:24px;background:var(--card);border:1px solid var(--border);border-radius:2px;margin-top:36px;}
+.founder-img{width:64px;height:64px;object-fit:cover;object-position:top;flex-shrink:0;border-radius:2px;}
+.founder-info h4{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:3px;}
+.founder-role{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:10px;letter-spacing:.06em;}
+.founder-info p{font-size:13px;color:var(--muted);line-height:1.8;}
+.credentials{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:0;}
+.cred-card{padding:28px;background:var(--card);border:1px solid var(--border);}
+.cred-card span{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);display:block;margin-bottom:12px;}
+.cred-card p{font-size:14px;color:rgba(255,255,255,.6);line-height:1.7;}
+@media(max-width:640px){
+  .page-hero{padding:120px 24px 60px;}
+  .about-grid{grid-template-columns:1fr;gap:40px;}
+  .about-img{aspect-ratio:3/2;}
+  .credentials{grid-template-columns:1fr 1fr;}
+  .founder-card{flex-direction:column;}
+}
+@media(max-width:540px){.credentials{grid-template-columns:1fr;}}
+</style>
+</head>
+<body class="">
+<div class="modal" id="modal">
+  <div class="modal-close" onclick="closeModal()">✕</div>
+  <div class="modal-frame" id="modal-frame"></div>
+</div>
+<div class="ticker-banner">
+  <div class="ticker-track">
+    <span>Creative Direction</span><span class="dot">·</span><span>Video Production</span><span class="dot">·</span><span>Website Design</span><span class="dot">·</span><span>Melbourne, Australia</span><span class="dot">·</span><span>hello@enforma.agency</span><span class="dot">·</span><span>Creative Direction</span><span class="dot">·</span><span>Video Production</span><span class="dot">·</span><span>Website Design</span><span class="dot">·</span><span>Melbourne, Australia</span><span class="dot">·</span><span>hello@enforma.agency</span><span class="dot">·</span>
+  </div>
+</div>
+<nav id="nav" ><div class="nav-in"><div class="nav-logo"><a href="index.html"><img src="enformalogotexttransparentAsset_7.png" alt="Enforma" style="filter:brightness(0) invert(1);"></a></div><div class="nav-links"><a class="nl" href="work.html">Work</a><a class="nl" href="services.html">Services</a><a class="nl active" href="about.html">About</a><a class="nl nl-cta" href="contact.html">Work With Us</a></div><div class="nav-ham" onclick="toggleMob()"><span></span><span></span></div></div></nav>
+<div class="mob" id="mob">
+  <a href="work.html" onclick="toggleMob()">Work</a>
+  <a href="services.html" onclick="toggleMob()">Services</a>
+  <a href="about.html" onclick="toggleMob()">About</a>
+  <a href="contact.html" onclick="toggleMob()" class="mob-cta">Work With Us</a>
+</div>
+<div class="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+
+<div class="page-hero">
+  <span class="lbl rev">Who we are</span>
+  <h1 class="rev">Built in the field,<br>not in theory.</h1>
+</div>
+
+<section class="section">
+  <div class="about-grid">
+    <div class="about-copy">
+      <p class="rev">Lukanda started Enforma after years in modelling, video, and content creation. He's collaborated with Nike, Samsung, Myer, New Balance, Culture Kings, and Footlocker. Been in front of the camera and behind it.</p>
+      <p class="rev">Enforma exists to give other businesses that same edge. Creative direction and production on the outside. Clean systems on the inside. Everything working together.</p>
+      <p class="rev">We work with trade businesses, hospitality venues, small business owners, and personal brands. Anyone who takes their work seriously and wants their brand to match.</p>
+      <div class="founder-card rev">
+        <img src="lukandaenformapp.JPG" alt="Lukanda" class="founder-img">
+        <div class="founder-info">
+          <h4>Lukanda</h4>
+          <p class="founder-role">Creative Director &amp; Founder</p>
+          <p>Built Basic Respect from the ground up. Brand strategy, creative direction, video, content, websites. Knows what separates the brands that look the part from the ones that don't.</p>
+        </div>
+      </div>
+    </div>
+    <div class="rev d1"><img src="bts_enforma.jpeg" alt="Behind the scenes at Enforma" class="about-img"></div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;border-top:none;">
+  <span class="lbl rev">Background</span>
+  <h2 class="display rev" style="margin-bottom:40px;">The experience<br>behind the work.</h2>
+  <div class="credentials rev">
+    <div class="cred-card"><span>Modelling</span><p>Nike, Samsung, Myer, New Balance, Culture Kings, Footlocker. Years in front of the camera understanding how brands produce and direct.</p></div>
+    <div class="cred-card"><span>Video &amp; Creative</span><p>Director, shooter, editor. Built video content systems from scratch for fashion, events, trade, hospitality, and personal brands.</p></div>
+    <div class="cred-card"><span>Brand Building</span><p>Co-founded Basic Respect — a DTC fashion brand built from nothing. Every operational and creative challenge hit and solved from the inside.</p></div>
+  </div>
+</section>
+
+<div class="cta-band rev">
+  <h2>Want to work<br>together?</h2>
+  <a href="contact.html" class="btn-primary">Start a Project</a>
+</div>
+<footer>
+  <div class="foot-grid">
+    <div><div class="foot-logo"><img src="enformalogotexttransparentAsset_7.png" alt="Enforma" style="filter:brightness(0) invert(1);"></div><p class="foot-tag">Creative Direction.<br>Video Production.<br>Website Design.</p></div>
+    <div class="foot-col"><h5>Navigation</h5><ul><li><a href="work.html">Work</a></li><li><a href="services.html">Services</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Work With Us</a></li></ul></div>
+    <div class="foot-col"><h5>Get in touch</h5><p>Melbourne, Australia</p><a href="mailto:hello@enforma.agency">hello@enforma.agency</a><a href="https://www.instagram.com/enforma___" target="_blank">Instagram</a><a href="https://www.linkedin.com/company/enforma-agency" target="_blank">LinkedIn</a></div>
+  </div>
+  <div class="foot-btm"><p>© 2026 Enforma. All rights reserved.</p><p>Melbourne, Australia</p></div>
+</footer>
+<script>
+
+function toggleMob(){
+  const m=document.getElementById('mob'),b=document.querySelectorAll('.nav-ham span');
+  const open=m.classList.toggle('open');
+  document.body.classList.toggle('lock',open);
+  b[0].style.transform=open?'rotate(45deg) translate(4px,4px)':'';
+  b[1].style.transform=open?'rotate(-45deg) translate(4px,-4px)':'';
+}
+function playVideo(id){
+  document.getElementById('modal-frame').innerHTML=`<iframe src="https://www.youtube.com/embed/${id}?autoplay=1&rel=0" allow="autoplay;encrypted-media" allowfullscreen></iframe>`;
+  document.getElementById('modal').classList.add('open');
+  document.body.classList.add('lock');
+}
+function closeModal(){document.getElementById('modal').classList.remove('open');document.getElementById('modal-frame').innerHTML='';document.body.classList.remove('lock');}
+document.getElementById('modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60);
+  document.querySelector('.btt').classList.toggle('show',window.scrollY>400);
+});
+const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);}});},{threshold:.07,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.rev').forEach(el=>ro.observe(el));
+function faq(el){el.nextElementSibling.classList.toggle('open');el.querySelector('.faq-tog').classList.toggle('open');}
+
+</script>
+</body>
+</html>
