@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enforma | Creative Consultancy & Automation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      color: #1a1a1a;
+      background: #fff;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      border-bottom: 1px solid #f0f0f0;
+      padding: 1rem 2rem;
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      text-align: center;
+    }
+
+    .logo img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.5rem;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #1a1a1a;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #666;
+    }
+
+    main {
+      margin-top: 60px;
+    }
+
+    section {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 6rem 2rem;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: #666;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: #1a1a1a;
+      color: #fff;
+      padding: 1rem 2rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.3s;
+      font-weight: 500;
+    }
+
+    .cta-button:hover {
+      background: #333;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      background: #f9f9f9;
+      padding: 2rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .team-section h3 {
+      font-size: 1.1rem;
+      margin-top: 1rem;
+    }
+
+    .team-section .subtitle {
+      color: #999;
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .team-section .bio {
+      color: #666;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .faq {
+      background: #f9f9f9;
+      padding: 2rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .faq summary {
+      cursor: pointer;
+      font-weight: 500;
+      padding: 1rem;
+      margin: -1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq summary:hover {
+      background: #f0f0f0;
+      border-radius: 4px;
+    }
+
+    .faq[open] summary {
+      margin-bottom: 1rem;
+    }
+
+    .faq p {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    footer {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 3rem 2rem;
+      text-align: center;
+      margin-top: 4rem;
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 1rem;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #1a1a1a;
+      color: #fff;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.3s;
+      text-decoration: none;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      nav ul {
+        gap: 1rem;
+      }
+
+      section {
+        padding: 2rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        ENFORMA
+      </div>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <h1>We look at how you work. We find the creative solutions.</h1>
+      <p>Custom automation, streamlined operations, and growth strategies for growing businesses.</p>
+      <a href="#contact" class="cta-button">Book Your Strategy</a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+      <h2>The Team</h2>
+      <div class="grid-2">
+        <div class="card team-section">
+          <h3>Lukanda Teziggwa</h3>
+          <div class="subtitle">Founder & Creative Director</div>
+          <div class="bio">Lukanda started Enforma after solving operational challenges at Basic Respect, a premium fashion brand he built from the ground up. His background in brand building, creative direction, and automation strategy shapes how Enforma approaches client problems—designing elegant solutions that scale.</div>
+        </div>
+
+        <div class="card team-section">
+          <h3>Jerome</h3>
+          <div class="subtitle">Operations Manager</div>
+          <div class="bio">Jerome brings deep expertise in operations and logistics. Together with Lukanda, he ensures every project runs smoothly—from discovery through delivery. His operational excellence keeps client implementations on track and seamless.</div>
+        </div>
+
+        <div class="card team-section">
+          <img src="renae-degaetano.jpg" alt="Renae DeGaetano">
+          <h3>Renae DeGaetano</h3>
+          <div class="subtitle">Marketing Specialist</div>
+          <div class="bio">Renae started her career at Elite Eleven (2020–2024), where she was part of a founding team that grew the company into a multimillion-dollar operation. She developed expertise across marketing, email onboarding, and customer service in a fast-growth environment. She now brings that versatile experience to Endota Spa and Endota Wellness College as a Junior Marketing Coordinator, while leading marketing strategy and execution at Enforma.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+      <h2>Services</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Creative Consultancy</h3>
+          <p>Strategic guidance on brand, content, and operational design.</p>
+        </div>
+        <div class="card">
+          <h3>Content Creation</h3>
+          <p>Professional copywriting, design, and asset production.</p>
+        </div>
+        <div class="card">
+          <h3>Business Automation</h3>
+          <p>Custom workflows, integrations, and process optimization.</p>
+        </div>
+        <div class="card">
+          <h3>Operational Strategy</h3>
+          <p>Systems architecture and scalable process design.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process Section -->
+    <section>
+      <h2>Our Process</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Week 1: Understand</h3>
+          <p>We dive deep into your operations, challenges, and goals.</p>
+        </div>
+        <div class="card">
+          <h3>Week 2–3: Build</h3>
+          <p>We design and implement custom solutions.</p>
+        </div>
+        <div class="card">
+          <h3>Week 4: Scale</h3>
+          <p>We train your team and hand over the keys.</p>
+        </div>
+        <div class="card">
+          <h3>Ongoing: Optimize</h3>
+          <p>We support and refine your systems as you grow.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Guarantee Section -->
+    <section>
+      <h2>Our Guarantee</h2>
+      <div style="text-align: center; background: #f9f9f9; padding: 2rem; border-radius: 8px;">
+        <p style="font-size: 1.1rem; color: #666;">Live implementation in 4 weeks or we refund your setup fee.</p>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+      <h2>Frequently Asked Questions</h2>
+
+      <details class="faq">
+        <summary>What's included in the setup fee?</summary>
+        <p>Strategy consultation, custom design, implementation, training, and handoff documentation.</p>
+      </details>
+
+      <details class="faq">
+        <summary>What's a typical project timeline?</summary>
+        <p>Most projects run 4 weeks from kickoff to launch. Complex integrations may take longer.</p>
+      </details>
+
+      <details class="faq">
+        <summary>Do you work with non-technical teams?</summary>
+        <p>Yes. We build systems that work for your team's skillset and provide full training.</p>
+      </details>
+
+      <details class="faq">
+        <summary>What industries do you work with?</summary>
+        <p>Manufacturing, logistics, hospitality, retail, wellness, and professional services.</p>
+      </details>
+
+      <details class="faq">
+        <summary>Can you integrate with our existing tools?</summary>
+        <p>Most integrations are possible. We'll audit your tech stack during discovery.</p>
+      </details>
+
+      <details class="faq">
+        <summary>What if we need ongoing support?</summary>
+        <p>We offer retainer packages for ongoing optimization and new automation projects.</p>
+      </details>
+
+      <details class="faq">
+        <summary>How do you measure success?</summary>
+        <p>We define KPIs during discovery and track improvements in efficiency, cost, and quality.</p>
+      </details>
+
+      <details class="faq">
+        <summary>What's your pricing?</summary>
+        <p>Setup fees start at $2,500. Monthly retainers range from $500–$1,500 depending on scope.</p>
+      </details>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" style="text-align: center;">
+      <h2>Ready to transform your operations?</h2>
+      <p style="color: #666; margin-bottom: 2rem;">Let's talk about your challenges and opportunities.</p>
+      <a href="mailto:hello@enforma.agency" class="cta-button">hello@enforma.agency</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Enforma. All rights reserved.</p>
+    <p>Melbourne, Australia</p>
+    <div style="margin-top: 1rem;">
+      <a href="https://www.instagram.com/enforma___?igsh=ODV4amRhOGV2YnRi&utm_source=qr">Instagram</a>
+      <a href="mailto:hello@enforma.agency">Email</a>
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">↑</a>
+
+  <script>
+    const backToTop = document.querySelector('.back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
