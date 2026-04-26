@@ -688,7 +688,8 @@ footer { background: var(--black); padding: 64px 48px 0; }
   padding-bottom: 48px;
   border-bottom: 1px solid var(--border);
 }
-.foot-logo img { height: 20px; filter: brightness(0) invert(1); margin-bottom: 16px; }
+.foot-logo { display: block; line-height: 0; }
+.foot-logo img { display: block !important; height: 20px !important; width: auto !important; max-width: 100px !important; object-fit: contain; filter: brightness(0) invert(1); margin-bottom: 16px; }
 .foot-tag {
   font-family: var(--display);
   font-style: normal;
