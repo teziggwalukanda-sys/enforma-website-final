@@ -234,6 +234,27 @@ footer{background:#080808;padding:64px 48px 0;}
   .svc-row{grid-template-columns:48px 1fr;grid-template-rows:auto auto;gap:4px 0;}
   .svc-desc{grid-column:2;margin-top:6px;}
 }
+/* FEATURED SHOOT */
+.fs{background:#080808;padding:80px 48px;border-top:1px solid rgba(255,255,255,.05);}
+.fs-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;max-width:1200px;margin:0 auto;}
+.fs-thumb{position:relative;aspect-ratio:16/9;overflow:hidden;cursor:pointer;background:#111;}
+.fs-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease;}
+.fs-thumb:hover img{transform:scale(1.03);}
+.fs-thumb-overlay{position:absolute;inset:0;background:rgba(8,8,8,.3);display:flex;align-items:center;justify-content:center;transition:background .3s;}
+.fs-thumb:hover .fs-thumb-overlay{background:rgba(8,8,8,.15);}
+.fs-play{width:64px;height:64px;border:1px solid rgba(255,255,255,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .3s;backdrop-filter:blur(8px);}
+.fs-thumb:hover .fs-play{border-color:var(--gold);background:rgba(201,169,110,.12);transform:scale(1.08);}
+.fs-play-tri{width:0;height:0;border-style:solid;border-width:9px 0 9px 18px;border-color:transparent transparent transparent #f0ede8;margin-left:4px;}
+.fs-copy .lbl{color:var(--gold);}
+.fs-copy h2{font-family:var(--serif);font-size:clamp(28px,3.5vw,48px);font-weight:400;line-height:1.1;letter-spacing:-.02em;color:#f0ede8;margin-bottom:16px;}
+.fs-copy p{font-size:15px;color:rgba(240,237,232,.45);line-height:1.8;margin-bottom:32px;}
+.fs-actions{display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+.fs-link{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(240,237,232,.35);transition:color .2s;}
+.fs-link:hover{color:#f0ede8;}
+.btn-gold{display:inline-block;padding:13px 32px;background:var(--gold);color:#080808;font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;border:none;cursor:pointer;transition:opacity .2s;font-family:var(--sans);}
+.btn-gold:hover{opacity:.85;}
+
+@media(max-width:1024px){.fs{padding:64px 28px;}.fs-inner{gap:40px;}}
 @media(max-width:768px){
   nav{padding:0 20px;}
   .nav-links{display:none;}
@@ -249,6 +270,8 @@ footer{background:#080808;padding:64px 48px 0;}
   .about-img-wrap img,.about-img-ph{aspect-ratio:3/2;}
   .work-grid2{grid-template-columns:1fr 1fr;}
   .cta-band{flex-direction:column;align-items:flex-start;}
+  .fs{padding:56px 20px;}
+  .fs-inner{grid-template-columns:1fr;gap:32px;}
 }
 </style>
 </head>
@@ -437,6 +460,27 @@ footer{background:#080808;padding:64px 48px 0;}
     </div>
   </div>
 </section>
+
+<!-- FEATURED SHOOT -->
+<div class="fs rev">
+  <div class="fs-inner">
+    <div class="fs-thumb" onclick="playVideo('_H2ltVmNfTg')">
+      <img src="https://img.youtube.com/vi/_H2ltVmNfTg/maxresdefault.jpg" alt="InnerStorm Pilates brand video by Enforma, Melbourne video production">
+      <div class="fs-thumb-overlay">
+        <div class="fs-play"><div class="fs-play-tri"></div></div>
+      </div>
+    </div>
+    <div class="fs-copy">
+      <span class="lbl">Fresh off the shoot</span>
+      <h2>InnerStorm Pilates</h2>
+      <p>Brand promo and talking head interviews shot in Airport West, Melbourne. A spec shoot that captured something real.</p>
+      <div class="fs-actions">
+        <button class="btn-gold" onclick="playVideo('_H2ltVmNfTg')">Watch the Video</button>
+        <a href="inside-enforma.html" class="fs-link">Read the story &rarr;</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- SERVICES -->
 <section id="services">
