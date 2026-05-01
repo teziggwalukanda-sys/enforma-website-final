@@ -104,8 +104,6 @@ nav.scrolled{background:#080808;}
 .work-head h2{font-family:var(--serif);font-size:clamp(28px,3.5vw,48px);font-weight:400;color:var(--ink);letter-spacing:-.02em;}
 .work-head a{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);transition:color .2s;}
 .work-head a:hover{color:var(--ink);}
-.work-grid{display:grid;grid-template-columns:2fr 1fr;gap:2px;margin-bottom:2px;}
-.work-grid2{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;}
 .wcard{position:relative;overflow:hidden;cursor:pointer;background:#0f0f0f;}
 .wcard img{width:100%;height:100%;object-fit:cover;aspect-ratio:inherit;transition:transform .8s ease;}
 .wcard:hover img{transform:scale(1.03);}
@@ -226,14 +224,6 @@ footer{background:#080808;padding:64px 48px 0;}
 .rev.in{opacity:1;transform:none;}
 .d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}
 
-@media(max-width:1024px){
-  nav,.hero-body,.work-head,.work-items,.work-items2,section,.cta-band,.foot-grid,.foot-btm{padding-left:28px;padding-right:28px;}
-  .work-grid{grid-template-columns:1fr;}
-  .wcard-side{aspect-ratio:16/9;}
-  .about-grid{grid-template-columns:1fr;gap:40px;}
-  .svc-row{grid-template-columns:48px 1fr;grid-template-rows:auto auto;gap:4px 0;}
-  .svc-desc{grid-column:2;margin-top:6px;}
-}
 /* FEATURED SHOOT */
 .fs{background:#080808;padding:80px 48px;border-top:1px solid rgba(255,255,255,.05);}
 .fs-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;max-width:1200px;margin:0 auto;}
@@ -253,8 +243,18 @@ footer{background:#080808;padding:64px 48px 0;}
 .fs-link:hover{color:#f0ede8;}
 .btn-gold{display:inline-block;padding:13px 32px;background:var(--gold);color:#080808;font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;border:none;cursor:pointer;transition:opacity .2s;font-family:var(--sans);}
 .btn-gold:hover{opacity:.85;}
+.fs-divider{border:none;border-top:1px solid rgba(255,255,255,.05);max-width:1200px;margin:64px auto 0;}
 
-@media(max-width:1024px){.fs{padding:64px 28px;}.fs-inner{gap:40px;}}
+@media(max-width:1024px){
+  nav,.hero-body,.work-head,.work-items,.work-items2,section,.cta-band,.foot-grid,.foot-btm{padding-left:28px;padding-right:28px;}
+  .work-grid{grid-template-columns:1fr;}
+  .wcard-side{aspect-ratio:16/9;}
+  .about-grid{grid-template-columns:1fr;gap:40px;}
+  .svc-row{grid-template-columns:48px 1fr;grid-template-rows:auto auto;gap:4px 0;}
+  .svc-desc{grid-column:2;margin-top:6px;}
+  .fs{padding:64px 28px;}
+  .fs-inner{gap:40px;}
+}
 @media(max-width:768px){
   nav{padding:0 20px;}
   .nav-links{display:none;}
@@ -268,7 +268,6 @@ footer{background:#080808;padding:64px 48px 0;}
   .p-img{display:none;}
   .p-copy{padding:36px 20px;border-left:none;border-top:1px solid rgba(0,0,0,.06);}
   .about-img-wrap img,.about-img-ph{aspect-ratio:3/2;}
-  .work-grid2{grid-template-columns:1fr 1fr;}
   .cta-band{flex-direction:column;align-items:flex-start;}
   .fs{padding:56px 20px;}
   .fs-inner{grid-template-columns:1fr;gap:32px;}
@@ -350,14 +349,15 @@ footer{background:#080808;padding:64px 48px 0;}
 
   <!-- Category tabs -->
   <div class="work-cats rev" style="display:flex;gap:0;border-bottom:1px solid rgba(0,0,0,.08);padding:0 48px;margin-bottom:40px;overflow-x:auto;">
-    <button class="wcat active" data-cat="trade">Trade</button>
+    <button class="wcat active" data-cat="realestate">Real Estate</button>
+    <button class="wcat" data-cat="trade">Trade</button>
     <button class="wcat" data-cat="hospitality">Hospitality</button>
     <button class="wcat" data-cat="smallbiz">Small Business</button>
     <button class="wcat" data-cat="personal">Personal Brand</button>
   </div>
 
   <!-- TRADE -->
-  <div class="work-cat-panel active" data-panel="trade">
+  <div class="work-cat-panel" data-panel="trade">
     <div class="work-items rev" style="grid-template-columns:1fr 1fr;">
       <div class="work-item">
         <div class="wcard" style="aspect-ratio:9/16;">
@@ -413,6 +413,19 @@ footer{background:#080808;padding:64px 48px 0;}
     </div>
   </div>
 
+  <!-- REAL ESTATE -->
+  <div class="work-cat-panel active" data-panel="realestate">
+    <div class="work-items rev" style="grid-template-columns:1fr 1fr;">
+      <div class="work-item">
+        <div class="wcard wcard-main">
+          <img src="https://img.youtube.com/vi/lJ7whQzpF_I/maxresdefault.jpg" alt="Aife Raveche Property Glen Iris" loading="lazy">
+          <div class="wcard-play" onclick="playVideo('lJ7whQzpF_I')"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+        </div>
+        <div class="wcard-cap"><span class="wcard-cap-tag">Real Estate · Buyer's Advocate</span><p class="wcard-cap-title">Aife Raveche Property — Glen Iris</p></div>
+      </div>
+    </div>
+  </div>
+
   <!-- PERSONAL BRAND -->
   <div class="work-cat-panel" data-panel="personal">
     <div class="work-items rev" style="grid-template-columns:1fr 1fr;">
@@ -461,8 +474,9 @@ footer{background:#080808;padding:64px 48px 0;}
   </div>
 </section>
 
-<!-- FEATURED SHOOT -->
+<!-- FEATURED SHOOTS -->
 <div class="fs rev">
+  <!-- InnerStorm -->
   <div class="fs-inner">
     <div class="fs-thumb" onclick="playVideo('_H2ltVmNfTg')">
       <img src="https://img.youtube.com/vi/_H2ltVmNfTg/maxresdefault.jpg" alt="InnerStorm Pilates brand video by Enforma, Melbourne video production">
@@ -476,7 +490,29 @@ footer{background:#080808;padding:64px 48px 0;}
       <p>Brand promo and talking head interviews shot in Airport West, Melbourne. A spec shoot that captured something real.</p>
       <div class="fs-actions">
         <button class="btn-gold" onclick="playVideo('_H2ltVmNfTg')">Watch the Video</button>
-        <a href="inside-enforma.html" class="fs-link">Read the story &rarr;</a>
+        <a href="inside-enforma.html#innerstorm" class="fs-link">Read the story &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Divider -->
+  <hr class="fs-divider">
+
+  <!-- Raveche -->
+  <div class="fs-inner" style="margin-top:64px;">
+    <div class="fs-copy">
+      <span class="lbl">Paid Client · Real Estate</span>
+      <h2>Aife Raveche Property</h2>
+      <p>Cinematic walkthrough for a Melbourne buyer's advocate, shot in Glen Iris. Clean brief, beautiful property, strong result.</p>
+      <div class="fs-actions">
+        <button class="btn-gold" onclick="playVideo('lJ7whQzpF_I')">Watch the Video</button>
+        <a href="inside-enforma.html#raveche" class="fs-link">Read the story &rarr;</a>
+      </div>
+    </div>
+    <div class="fs-thumb" onclick="playVideo('lJ7whQzpF_I')">
+      <img src="https://img.youtube.com/vi/lJ7whQzpF_I/maxresdefault.jpg" alt="Aife Raveche Property Glen Iris cinematic real estate video by Enforma Melbourne">
+      <div class="fs-thumb-overlay">
+        <div class="fs-play"><div class="fs-play-tri"></div></div>
       </div>
     </div>
   </div>
