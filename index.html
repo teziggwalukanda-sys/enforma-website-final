@@ -28,10 +28,9 @@ button{font-family:var(--sans);}
 /* SPLASH */
 #splash{position:fixed;inset:0;z-index:8000;display:flex;align-items:center;justify-content:center;background:#080808;transition:opacity .9s,visibility .9s;}
 #splash.out{opacity:0;visibility:hidden;pointer-events:none;}
-#splash video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1;}
-#splash::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.38);z-index:0;pointer-events:none;}
+#splash video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.22;}
 .sp{position:relative;z-index:1;text-align:center;display:flex;flex-direction:column;align-items:center;gap:44px;}
-.sp img{height:36px;width:auto;max-width:160px;object-fit:contain;animation:up 1.1s ease both;}
+.sp img{height:36px;animation:up 1.1s ease both;}
 .sp p{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:rgba(240,237,232,.4);animation:up 1.1s .2s ease both;}
 .sp-btn{font-size:10px;letter-spacing:.22em;text-transform:uppercase;padding:13px 44px;border:1px solid rgba(255,255,255,.18);background:transparent;color:#f0ede8;cursor:pointer;transition:all .25s;animation:up 1.1s .4s ease both;}
 .sp-btn:hover{background:#f0ede8;color:#080808;}
@@ -80,7 +79,7 @@ nav.scrolled{background:#080808;}
 .hero{min-height:100vh;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;background:#080808;}
 .hero-media{position:absolute;inset:0;}
 .hero-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
-.hero-ph{position:absolute;inset:0;background:#070707 url('2B4A8922.JPG') center/cover no-repeat;}
+.hero-ph{position:absolute;inset:0;background:#070707;background-image:repeating-linear-gradient(45deg,transparent,transparent 12px,rgba(255,255,255,.007) 12px,rgba(255,255,255,.007) 24px);}
 .hero-media::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.18) 0%,rgba(0,0,0,.0) 35%,rgba(0,0,0,.72) 100%);}
 .hero-body{position:relative;z-index:2;padding:0 48px 72px;}
 .hero-eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(240,237,232,.35);display:block;margin-bottom:20px;font-family:var(--mono);}
@@ -105,8 +104,6 @@ nav.scrolled{background:#080808;}
 .work-head h2{font-family:var(--serif);font-size:clamp(28px,3.5vw,48px);font-weight:400;color:var(--ink);letter-spacing:-.02em;}
 .work-head a{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);transition:color .2s;}
 .work-head a:hover{color:var(--ink);}
-.work-grid{display:grid;grid-template-columns:2fr 1fr;gap:2px;margin-bottom:2px;}
-.work-grid2{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;}
 .wcard{position:relative;overflow:hidden;cursor:pointer;background:#0f0f0f;}
 .wcard img{width:100%;height:100%;object-fit:cover;aspect-ratio:inherit;transition:transform .8s ease;}
 .wcard:hover img{transform:scale(1.03);}
@@ -206,8 +203,7 @@ hr.rule{border:none;border-top:1px solid rgba(0,0,0,.08);margin:0;}
 /* FOOTER */
 footer{background:#080808;padding:64px 48px 0;}
 .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.05);}
-.foot-logo{width:fit-content;}
-.foot-logo img{height:20px;width:auto!important;max-width:120px;object-fit:contain;filter:brightness(0) invert(1);margin-bottom:16px;}
+.foot-logo img{height:20px;filter:brightness(0) invert(1);margin-bottom:16px;}
 .foot-tag{font-family:var(--serif);font-style:italic;font-size:15px;font-weight:400;color:rgba(240,237,232,.28);line-height:1.7;}
 .foot-col h5{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(240,237,232,.18);margin-bottom:14px;font-family:var(--mono);}
 .foot-col ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
@@ -228,14 +224,6 @@ footer{background:#080808;padding:64px 48px 0;}
 .rev.in{opacity:1;transform:none;}
 .d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}
 
-@media(max-width:1024px){
-  nav,.hero-body,.work-head,.work-items,.work-items2,section,.cta-band,.foot-grid,.foot-btm{padding-left:28px;padding-right:28px;}
-  .work-grid{grid-template-columns:1fr;}
-  .wcard-side{aspect-ratio:16/9;}
-  .about-grid{grid-template-columns:1fr;gap:40px;}
-  .svc-row{grid-template-columns:48px 1fr;grid-template-rows:auto auto;gap:4px 0;}
-  .svc-desc{grid-column:2;margin-top:6px;}
-}
 /* FEATURED SHOOT */
 .fs{background:#080808;padding:80px 48px;border-top:1px solid rgba(255,255,255,.05);}
 .fs-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;max-width:1200px;margin:0 auto;}
@@ -255,8 +243,18 @@ footer{background:#080808;padding:64px 48px 0;}
 .fs-link:hover{color:#f0ede8;}
 .btn-gold{display:inline-block;padding:13px 32px;background:var(--gold);color:#080808;font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;border:none;cursor:pointer;transition:opacity .2s;font-family:var(--sans);}
 .btn-gold:hover{opacity:.85;}
+.fs-divider{border:none;border-top:1px solid rgba(255,255,255,.05);max-width:1200px;margin:64px auto 0;}
 
-@media(max-width:1024px){.fs{padding:64px 28px;}.fs-inner{gap:40px;}}
+@media(max-width:1024px){
+  nav,.hero-body,.work-head,.work-items,.work-items2,section,.cta-band,.foot-grid,.foot-btm{padding-left:28px;padding-right:28px;}
+  .work-grid{grid-template-columns:1fr;}
+  .wcard-side{aspect-ratio:16/9;}
+  .about-grid{grid-template-columns:1fr;gap:40px;}
+  .svc-row{grid-template-columns:48px 1fr;grid-template-rows:auto auto;gap:4px 0;}
+  .svc-desc{grid-column:2;margin-top:6px;}
+  .fs{padding:64px 28px;}
+  .fs-inner{gap:40px;}
+}
 @media(max-width:768px){
   nav{padding:0 20px;}
   .nav-links{display:none;}
@@ -270,7 +268,6 @@ footer{background:#080808;padding:64px 48px 0;}
   .p-img{display:none;}
   .p-copy{padding:36px 20px;border-left:none;border-top:1px solid rgba(0,0,0,.06);}
   .about-img-wrap img,.about-img-ph{aspect-ratio:3/2;}
-  .work-grid2{grid-template-columns:1fr 1fr;}
   .cta-band{flex-direction:column;align-items:flex-start;}
   .fs{padding:56px 20px;}
   .fs-inner{grid-template-columns:1fr;gap:32px;}
@@ -334,7 +331,11 @@ footer{background:#080808;padding:64px 48px 0;}
     <span class="hero-eyebrow">Melbourne, Australia</span>
     <h1>We build<br>the visuals.<br>You run your<br><em>business.</em></h1>
     <div class="hero-actions">
-      <a href="#work" class="hero-link">See the work →</a>
+      <div class="play-btn" onclick="openModal()">
+        <div class="play-ring"><div class="play-tri"></div></div>
+        <div class="play-meta"><strong>Watch the Reel</strong><span>Enforma · 2026</span></div>
+      </div>
+      <a href="#work" class="hero-link" style="margin-left:16px;">See the work →</a>
     </div>
   </div>
   <div class="hero-scroll"><div class="hero-scroll-line"></div><div class="hero-scroll-txt">Scroll</div></div>
@@ -348,14 +349,15 @@ footer{background:#080808;padding:64px 48px 0;}
 
   <!-- Category tabs -->
   <div class="work-cats rev" style="display:flex;gap:0;border-bottom:1px solid rgba(0,0,0,.08);padding:0 48px;margin-bottom:40px;overflow-x:auto;">
-    <button class="wcat active" data-cat="trade">Trade</button>
+    <button class="wcat active" data-cat="realestate">Real Estate</button>
+    <button class="wcat" data-cat="trade">Trade</button>
     <button class="wcat" data-cat="hospitality">Hospitality</button>
     <button class="wcat" data-cat="smallbiz">Small Business</button>
     <button class="wcat" data-cat="personal">Personal Brand</button>
   </div>
 
   <!-- TRADE -->
-  <div class="work-cat-panel active" data-panel="trade">
+  <div class="work-cat-panel" data-panel="trade">
     <div class="work-items rev" style="grid-template-columns:1fr 1fr;">
       <div class="work-item">
         <div class="wcard" style="aspect-ratio:9/16;">
@@ -411,6 +413,19 @@ footer{background:#080808;padding:64px 48px 0;}
     </div>
   </div>
 
+  <!-- REAL ESTATE -->
+  <div class="work-cat-panel active" data-panel="realestate">
+    <div class="work-items rev" style="grid-template-columns:1fr 1fr;">
+      <div class="work-item">
+        <div class="wcard wcard-main">
+          <img src="https://img.youtube.com/vi/lJ7whQzpF_I/maxresdefault.jpg" alt="Aife Raveche Property Glen Iris" loading="lazy">
+          <div class="wcard-play" onclick="playVideo('lJ7whQzpF_I')"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+        </div>
+        <div class="wcard-cap"><span class="wcard-cap-tag">Real Estate · Buyer's Advocate</span><p class="wcard-cap-title">Aife Raveche Property — Glen Iris</p></div>
+      </div>
+    </div>
+  </div>
+
   <!-- PERSONAL BRAND -->
   <div class="work-cat-panel" data-panel="personal">
     <div class="work-items rev" style="grid-template-columns:1fr 1fr;">
@@ -445,22 +460,23 @@ footer{background:#080808;padding:64px 48px 0;}
   </div>
   <div>
     <div class="ppanel active" data-panel="c">
-      <div class="p-img"><img src="bts_enforma.jpeg" alt="Enforma creative direction behind the scenes"></div>
+      <div class="p-img"><div class="p-img-ph">behind the lens</div></div>
       <div class="p-copy"><p class="p-step">Step 01</p><h3>Strategy before the camera</h3><p>Every project starts with a brief, not a shot list. We work with you to understand the business, the audience, and what the content actually needs to do.</p><p>From there we shape the creative direction — tone, pacing, messaging, visual language.</p><a href="#contact" class="btn-ink" style="width:fit-content;">Talk to us</a></div>
     </div>
     <div class="ppanel" data-panel="p">
-      <div class="p-img"><img src="bts_enforma.jpeg" alt="Enforma on set video production Melbourne"></div>
+      <div class="p-img"><div class="p-img-ph">on set</div></div>
       <div class="p-copy"><p class="p-step">Step 02</p><h3>We shoot. We direct. We deliver.</h3><p>On-location production with a cinematic edge. Equipment, crew, and creative eye — to capture not just what something looks like, but what it feels like.</p><p>Every frame is intentional. Nothing is filler.</p><a href="#work" class="btn-outline" style="width:fit-content;">See the work</a></div>
     </div>
     <div class="ppanel" data-panel="d">
-      <div class="p-img"><img src="bts_enforma.jpeg" alt="Enforma post production editing Melbourne"></div>
+      <div class="p-img"><div class="p-img-ph">Post Production</div></div>
       <div class="p-copy"><p class="p-step">Step 03</p><h3>Edited for performance, built to last</h3><p>Raw footage becomes refined content. Cut for the platform, paced for the audience, colour-graded for the brand. Formats ready for social, web, and broadcast.</p><p>We build the system around it so the next shoot runs faster and output stays consistent.</p><a href="#contact" class="btn-ink" style="width:fit-content;">Start a project</a></div>
     </div>
   </div>
 </section>
 
-<!-- FEATURED SHOOT -->
+<!-- FEATURED SHOOTS -->
 <div class="fs rev">
+  <!-- InnerStorm -->
   <div class="fs-inner">
     <div class="fs-thumb" onclick="playVideo('_H2ltVmNfTg')">
       <img src="https://img.youtube.com/vi/_H2ltVmNfTg/maxresdefault.jpg" alt="InnerStorm Pilates brand video by Enforma, Melbourne video production">
@@ -474,7 +490,29 @@ footer{background:#080808;padding:64px 48px 0;}
       <p>Brand promo and talking head interviews shot in Airport West, Melbourne. A spec shoot that captured something real.</p>
       <div class="fs-actions">
         <button class="btn-gold" onclick="playVideo('_H2ltVmNfTg')">Watch the Video</button>
-        <a href="inside-enforma.html" class="fs-link">Read the story &rarr;</a>
+        <a href="inside-enforma.html#innerstorm" class="fs-link">Read the story &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Divider -->
+  <hr class="fs-divider">
+
+  <!-- Raveche -->
+  <div class="fs-inner" style="margin-top:64px;">
+    <div class="fs-copy">
+      <span class="lbl">Paid Client · Real Estate</span>
+      <h2>Aife Raveche Property</h2>
+      <p>Cinematic walkthrough for a Melbourne buyer's advocate, shot in Glen Iris. Clean brief, beautiful property, strong result.</p>
+      <div class="fs-actions">
+        <button class="btn-gold" onclick="playVideo('lJ7whQzpF_I')">Watch the Video</button>
+        <a href="inside-enforma.html#raveche" class="fs-link">Read the story &rarr;</a>
+      </div>
+    </div>
+    <div class="fs-thumb" onclick="playVideo('lJ7whQzpF_I')">
+      <img src="https://img.youtube.com/vi/lJ7whQzpF_I/maxresdefault.jpg" alt="Aife Raveche Property Glen Iris cinematic real estate video by Enforma Melbourne">
+      <div class="fs-thumb-overlay">
+        <div class="fs-play"><div class="fs-play-tri"></div></div>
       </div>
     </div>
   </div>
@@ -486,7 +524,7 @@ footer{background:#080808;padding:64px 48px 0;}
   <h2 class="display rev">Creative production.<br><em>Built to scale.</em></h2>
   <div class="svc-list rev">
     <div class="svc-row"><span class="svc-n">01</span><h3 class="svc-name">Creative Direction &amp; Video</h3><p class="svc-desc">Brand promos, event recaps, social content series, venue reels. We direct, shoot, and deliver — then build the system to keep it consistent.</p></div>
-    <div class="svc-row"><span class="svc-n">02</span><h3 class="svc-name">Website Design &amp; Build</h3><p class="svc-desc">Sites that look as good as the work you do. No templates — designed from scratch, built to convert.</p></div>
+    <div class="svc-row"><span class="svc-n">02</span><h3 class="svc-name">Website Design &amp; Build</h3><p class="svc-desc">Sites that look as good as the work you do. No templates — designed from scratch, built to convert. <a href="Enforma Websites.html" style="color:var(--gold);text-decoration:underline;text-underline-offset:3px;">See examples →</a></p></div>
     <div class="svc-row"><span class="svc-n">03</span><h3 class="svc-name">Brand Strategy</h3><p class="svc-desc">The creative foundation every video, campaign, and touchpoint flows from. Define who you are, how you show up, what you stand for.</p></div>
     <div class="svc-row"><span class="svc-n">04</span><h3 class="svc-name">Content Systems</h3><p class="svc-desc">We design the workflow so content ships on time, every time. Great video means nothing without a process behind it.</p></div>
     <div class="svc-row"><span class="svc-n">05</span><h3 class="svc-name">Operations &amp; Reporting</h3><p class="svc-desc">Email flows, CRM, follow-ups. The backend that keeps everything moving — so your team focuses on what matters.</p></div>
@@ -510,16 +548,16 @@ footer{background:#080808;padding:64px 48px 0;}
       <p class="rev">Lukanda started Enforma after years in modelling, video, and content creation — collaborating with Nike, Samsung, Myer, New Balance, Culture Kings, and Footlocker. Been in front of the camera and behind it.</p>
       <p class="rev">Enforma exists to give other businesses that same edge. Creative direction on the outside. Clean systems on the inside.</p>
       <div class="founder rev">
-        <img class="founder-img" src="LUKANDA_1221.JPG" alt="Lukanda Teziggwa, Founder of Enforma">
+        <div class="founder-img-ph"></div>
         <div>
-          <h4>Lukanda Teziggwa</h4>
+          <h4>Lukanda</h4>
           <div class="founder-role">Creative Director &amp; Founder</div>
           <p>Knows what separates the brands that look the part from the ones that don't.</p>
         </div>
       </div>
     </div>
     <div class="about-img-wrap rev d1">
-      <img src="LUKANDA_1221.JPG" alt="Lukanda Teziggwa — Enforma founder" style="width:100%;aspect-ratio:4/5;object-fit:cover;object-position:top;display:block;">
+      <div class="about-img-ph">behind the scenes</div>
     </div>
   </div>
 </section>
@@ -546,18 +584,10 @@ footer{background:#080808;padding:64px 48px 0;}
   </div>
 </section>
 
-<!-- INSTAGRAM -->
-<div style="background:#080808;padding:72px 48px;text-align:center;border-top:1px solid rgba(255,255,255,.05);">
-  <p style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:rgba(240,237,232,.3);margin-bottom:16px;">Find us on Instagram</p>
-  <p style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(28px,4vw,52px);font-weight:400;color:#f0ede8;letter-spacing:-.02em;margin-bottom:8px;font-style:italic;">@enforma___</p>
-  <p style="font-size:14px;color:rgba(240,237,232,.35);margin-bottom:32px;line-height:1.7;">Behind the shoots. The work in progress. The stuff that doesn't make the reel.</p>
-  <a href="https://www.instagram.com/enforma___" target="_blank" rel="noopener" style="display:inline-block;padding:14px 40px;border:1px solid rgba(201,169,110,.4);color:var(--gold);font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;font-family:'DM Sans',sans-serif;transition:all .25s;" onmouseover="this.style.background='#c9a96e';this.style.color='#080808';this.style.borderColor='#c9a96e';" onmouseout="this.style.background='transparent';this.style.color='#c9a96e';this.style.borderColor='rgba(201,169,110,.4)';">Follow on Instagram</a>
-</div>
-
 <!-- FOOTER -->
 <footer>
   <div class="foot-grid">
-    <div><div class="foot-logo"><img src="assets/logo.png" alt="Enforma" style="height:20px;width:auto;max-width:140px;display:inline-block;object-fit:contain;"></div><p class="foot-tag">Craft. Strategy.<br>Elevation.</p></div>
+    <div><div class="foot-logo"><img src="assets/logo.png" alt="Enforma"></div><p class="foot-tag">Craft. Strategy.<br>Elevation.</p></div>
     <div class="foot-col"><h5>Navigation</h5><ul><li><a href="#work">Work</a></li><li><a href="#services">Services</a></li><li><a href="Enforma Websites.html">Websites</a></li><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li></ul></div>
     <div class="foot-col"><h5>Get in touch</h5><p>Melbourne, Australia</p><a href="mailto:hello@enforma.agency">hello@enforma.agency</a><a href="https://www.instagram.com/enforma___" target="_blank">Instagram</a><a href="https://www.linkedin.com/company/enforma-agency" target="_blank">LinkedIn</a></div>
   </div>
