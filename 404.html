@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Page not found | Enforma</title>
+<meta name="description" content="This page has moved or no longer exists.">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="canonical" href="https://enforma.agency/404.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Page not found | Enforma">
+<meta property="og:description" content="This page has moved or no longer exists.">
+<meta property="og:image" content="https://enforma.agency/assets/stills/innerstorm.jpg">
+<meta property="og:url" content="https://enforma.agency/404.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="apple-touch-icon" href="/assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<header class="top wrap">
+  <a href="/index.html" aria-label="Enforma home"><img class="logo-dark" src="/assets/enforma-logo-white.png" alt="Enforma"></a>
+  <nav aria-label="Main">
+    <a href="/index.html">Work</a>
+    <a href="/property-construction-video-melbourne.html">Construction</a>
+    <a href="/social.html">Social</a>
+    <a href="/websites-apps-ai-melbourne.html">Web + AI</a>
+    <a href="/journal.html">Journal</a>
+    <a href="/about.html">About</a>
+    <a class="nav-contact" href="/contact.html">Contact</a>
+  </nav>
+</header>
+<main class="wrap">
+  <section class="intro" style="min-height:50vh;align-content:center">
+    <h1>Nothing here. <span class="soft">The page has moved or no longer exists.</span></h1>
+    <div class="mono"><a href="/index.html">Back to the work &rarr;</a></div>
+  </section>
+</main>
+<footer id="contact" class="foot wrap">
+  <div style="display:grid;gap:14px;min-width:0">
+    <a class="mono foot-start" href="/contact.html"><span class="dot"></span>&nbsp; Start a project &rarr;</a>
+    <a class="foot-mail" href="mailto:hello@enforma.agency">hello@enforma.agency</a>
+  </div>
+  <div class="foot-links">
+    <button class="copy" type="button" data-copy>Copy email</button>
+    <span>0427 157 705</span>
+    <a href="https://instagram.com/enforma_media" target="_blank" rel="noopener">Instagram</a>
+  </div>
+  <nav class="foot-ind mono" aria-label="Industries"><a href="/property-construction-video-melbourne.html">Property &amp; construction</a><a href="/fashion-video-melbourne.html">Fashion</a><a href="/sports-video-melbourne.html">Sport</a><a href="/social.html">Content retainers</a><a href="/websites-apps-ai-melbourne.html">Websites &amp; AI</a></nav>
+  <div class="foot-base mono"><span>&copy; 2026 Enforma</span><span>Melbourne, Australia</span><span>enforma.agency</span></div>
+</footer>
+<script>
+// anyone who arrives on an inner page has already "entered", so skip the gate when they go to Work
+if(!document.getElementById("gate")){try{sessionStorage.setItem("enforma-entered","1")}catch(x){}}
+document.querySelectorAll("[data-copy]").forEach(function(b){b.addEventListener("click",function(){
+  try{navigator.clipboard.writeText("hello@enforma.agency").then(function(){b.textContent="Copied"},function(){b.textContent="hello@enforma.agency"})}
+  catch(err){b.textContent="hello@enforma.agency"}
+})});
+// load each tile's preview a little before it scrolls into view, so hovering starts it instantly
+if("IntersectionObserver" in window){var pre=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){var v=x.target.querySelector("video");if(v&&v.preload!=="auto"){v.preload="auto";v.load()}pre.unobserve(x.target)}})},{rootMargin:"400px 0px"});document.querySelectorAll(".work").forEach(function(w){pre.observe(w)})}
+document.querySelectorAll(".work").forEach(function(w){var v=w.querySelector("video");if(!v)return;
+  var on=function(){var p=v.play();if(p&&p.then)p.then(function(){w.classList.add("playing")}).catch(function(){})};
+  var off=function(){v.pause();w.classList.remove("playing")};
+  if(window.matchMedia("(hover:none)").matches&&"IntersectionObserver" in window){new IntersectionObserver(function(es){es.forEach(function(x){x.isIntersecting?on():off()})},{threshold:.6}).observe(w)}
+  else{w.addEventListener("mouseenter",on);w.addEventListener("mouseleave",off)}
+});
+</script>
+</body>
+</html>
