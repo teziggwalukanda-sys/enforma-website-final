@@ -89,7 +89,7 @@ document.querySelectorAll(".work").forEach(function(w){var v=w.querySelector("vi
 });
 </script>
 <script>
-var f=document.getElementById("enquiry"),note=document.getElementById("formNote"),END="";
+var f=document.getElementById("enquiry"),note=document.getElementById("formNote"),END="https://formsubmit.co/ajax/hello@enforma.agency";
 try{var t=new URLSearchParams(location.search).get("type");if(t)f.elements.type.value=t}catch(x){}
 f.addEventListener("submit",function(ev){
   ev.preventDefault();
@@ -98,8 +98,10 @@ f.addEventListener("submit",function(ev){
   d.type=f.elements.type.options[f.elements.type.selectedIndex].text;
   if(END){
     note.textContent="Sending...";
+    d._subject="Project enquiry: "+d.type+(d.company?" / "+d.company:"");d._template="table";d._replyto=d.email;
     fetch(END,{method:"POST",headers:{"Accept":"application/json","Content-Type":"application/json"},body:JSON.stringify(d)})
-      .then(function(r){if(!r.ok)throw 0;f.reset();note.textContent="Thanks. We'll be in touch within one business day."})
+      .then(function(r){if(!r.ok)throw 0;return r.json()})
+      .then(function(j){if(j&&String(j.success)==="false")throw 0;f.reset();note.textContent="Thanks. We'll be in touch within one business day."})
       .catch(function(){note.textContent="That didn't send. Please email hello@enforma.agency."});
   }else{
     var body=["Name: "+d.name,"Email: "+d.email,"Company: "+(d.company||"-"),"Phone: "+(d.phone||"-"),"Project: "+d.type,"Budget: "+(d.budget||"-"),"Timing: "+(d.timing||"-"),"",d.message||""].join("
